@@ -91,17 +91,17 @@
 /* Pricing Header */
 .pricing-header {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: var(--space-md);
-  padding-bottom: var(--space-md);
+  flex-direction: column;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-lg);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .pricing-size {
   display: flex;
   align-items: center;
-  gap: var(--space-sm);
+  gap: var(--space-md);
 }
 
 .size-icon {
@@ -115,30 +115,40 @@
   font-size: var(--text-xl);
   font-weight: 700;
   color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.pricing-size-info {
+  display: flex;
+  flex-direction: column;
 }
 
 .pricing-size h3 {
   font-size: 1.25rem;
   margin: 0;
+  line-height: 1.2;
 }
 
 .pricing-size .subtitle {
-  font-size: 0.875rem;
+  font-size: var(--text-sm);
   color: var(--color-gray);
+  margin-top: 2px;
 }
 
 .pricing-amount {
-  text-align: right;
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-sm);
 }
 
 .pricing-amount .price {
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: 700;
-  display: block;
+  line-height: 1;
 }
 
 .pricing-amount .price-range {
-  font-size: 0.75rem;
+  font-size: var(--text-sm);
   color: var(--color-gray);
 }
 
@@ -362,13 +372,8 @@
     padding: var(--space-xl);
   }
 
-  .pricing-header {
-    flex-direction: column;
-    gap: var(--space-md);
-  }
-
-  .pricing-amount {
-    text-align: left;
+  .pricing-amount .price {
+    font-size: 2rem;
   }
 }
 

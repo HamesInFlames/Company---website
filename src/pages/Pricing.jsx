@@ -6,7 +6,7 @@ import './Pricing.css'
 
 const websitePackages = [
   {
-    name: 'Small',
+    name: 'Essential',
     subtitle: 'Starter',
     price: '$1,500',
     priceRange: '$1,500 – $3,000',
@@ -22,7 +22,7 @@ const websitePackages = [
     popular: false
   },
   {
-    name: 'Medium',
+    name: 'Intermediate',
     subtitle: 'Business',
     price: '$4,000',
     priceRange: '$4,000 – $7,000',
@@ -39,7 +39,7 @@ const websitePackages = [
     popular: true
   },
   {
-    name: 'Large',
+    name: 'Advanced',
     subtitle: 'Premium',
     price: '$8,000',
     priceRange: '$8,000 – $15,000',
@@ -172,7 +172,7 @@ function WebsitePackages() {
                 <div className="pricing-header">
                   <div className="pricing-size">
                     <span className="size-icon">{pkg.name.charAt(0)}</span>
-                    <div>
+                    <div className="pricing-size-info">
                       <h3>{pkg.name}</h3>
                       <span className="subtitle">{pkg.subtitle}</span>
                     </div>
