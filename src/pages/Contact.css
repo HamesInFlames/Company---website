@@ -181,7 +181,7 @@
 }
 
 .form-success p {
-  font-size: 1.0625rem;
+  font-size: var(--text-md);
   color: var(--color-light-gray);
   max-width: 400px;
   margin: 0 auto var(--space-xl);
@@ -207,7 +207,7 @@
 }
 
 .info-section > p {
-  font-size: 0.9375rem;
+  font-size: var(--text-sm);
   color: var(--color-gray);
   margin-bottom: var(--space-lg);
 }
@@ -226,8 +226,8 @@
 }
 
 .method-icon {
-  width: 44px;
-  height: 44px;
+  width: var(--icon-md);
+  height: var(--icon-md);
   background: rgba(41, 151, 255, 0.15);
   border-radius: var(--radius-md);
   display: flex;
@@ -315,7 +315,7 @@ a.method-value:hover {
 }
 
 .response-time p {
-  font-size: 0.9375rem;
+  font-size: var(--text-sm);
   color: var(--color-silver);
   margin: 0;
 }

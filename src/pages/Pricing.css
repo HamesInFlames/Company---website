@@ -105,14 +105,14 @@
 }
 
 .size-icon {
-  width: 48px;
-  height: 48px;
+  width: var(--icon-md);
+  height: var(--icon-md);
   background: linear-gradient(135deg, rgba(41, 151, 255, 0.2), rgba(41, 151, 255, 0.05));
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
+  font-size: var(--text-xl);
   font-weight: 700;
   color: var(--color-accent);
 }
@@ -144,7 +144,7 @@
 
 /* Pricing Description */
 .pricing-description {
-  font-size: 0.9375rem;
+  font-size: var(--text-sm);
   color: var(--color-light-gray);
   margin-bottom: var(--space-lg);
 }
@@ -163,7 +163,7 @@
   align-items: flex-start;
   gap: var(--space-sm);
   color: var(--color-silver);
-  font-size: 0.9375rem;
+  font-size: var(--text-sm);
 }
 
 .pricing-features li .icon {
@@ -263,7 +263,7 @@
 }
 
 .quote-content p {
-  font-size: 1.0625rem;
+  font-size: var(--text-md);
   color: var(--color-light-gray);
   margin-bottom: var(--space-xl);
 }
@@ -285,7 +285,7 @@
   align-items: center;
   gap: var(--space-sm);
   color: var(--color-gray);
-  font-size: 0.9375rem;
+  font-size: var(--text-sm);
 }
 
 .quote-examples li::before {
@@ -317,7 +317,7 @@
 }
 
 .faq-item p {
-  font-size: 0.9375rem;
+  font-size: var(--text-sm);
   color: var(--color-gray);
   margin: 0;
 }

@@ -2,7 +2,7 @@
 
 /* Hero */
 .about-hero {
-  padding: 12rem var(--space-lg) 6rem;
+  padding: 12rem var(--space-lg) 4rem;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -52,7 +52,7 @@
 
 .story-content p {
   margin-bottom: var(--space-md);
-  font-size: 1.0625rem;
+  font-size: var(--text-md);
 }
 
 .story-image {
@@ -153,8 +153,8 @@
 }
 
 .value-icon {
-  width: 56px;
-  height: 56px;
+  width: var(--icon-lg);
+  height: var(--icon-lg);
   background: linear-gradient(135deg, rgba(41, 151, 255, 0.2), rgba(41, 151, 255, 0.05));
   border-radius: var(--radius-md);
   display: flex;
@@ -170,7 +170,7 @@
 }
 
 .value-card p {
-  font-size: 0.9375rem;
+  font-size: var(--text-sm);
   color: var(--color-gray);
 }
 
@@ -192,7 +192,7 @@
 }
 
 .approach-text > p {
-  font-size: 1.0625rem;
+  font-size: var(--text-md);
   margin-bottom: var(--space-xl);
 }
 
@@ -274,7 +274,7 @@
 }
 
 .timeline-content p {
-  font-size: 0.9375rem;
+  font-size: var(--text-sm);
   color: var(--color-gray);
 }
 

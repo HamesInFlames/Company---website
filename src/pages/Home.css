@@ -131,8 +131,8 @@
 }
 
 .service-icon {
-  width: 60px;
-  height: 60px;
+  width: var(--icon-lg);
+  height: var(--icon-lg);
   background: linear-gradient(135deg, rgba(41, 151, 255, 0.2), rgba(41, 151, 255, 0.05));
   border-radius: var(--radius-md);
   display: flex;
@@ -230,7 +230,7 @@
 }
 
 .project-content p {
-  font-size: 0.9375rem;
+  font-size: var(--text-sm);
   color: var(--color-gray);
   line-height: 1.5;
 }
@@ -304,7 +304,7 @@
 }
 
 .step-content p {
-  font-size: 0.9375rem;
+  font-size: var(--text-sm);
   color: var(--color-gray);
 }
 

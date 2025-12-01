@@ -40,6 +40,19 @@
   --space-3xl: 6rem;
   --space-4xl: 8rem;
   
+  /* Icon Sizes */
+  --icon-sm: 32px;
+  --icon-md: 48px;
+  --icon-lg: 60px;
+  
+  /* Font Sizes */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-md: 1.0625rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  
   /* Layout */
   --max-width: 1200px;
   --max-width-narrow: 900px;
