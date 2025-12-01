@@ -1,0 +1,342 @@
+/* About Page Styles */
+
+/* Hero */
+.about-hero {
+  padding: 12rem var(--space-lg) 6rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-hero-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(41, 151, 255, 0.1), transparent);
+  z-index: 0;
+}
+
+.about-hero .container {
+  position: relative;
+  z-index: 1;
+}
+
+.about-hero h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  max-width: 800px;
+  margin: var(--space-md) auto var(--space-lg);
+}
+
+.about-hero-subtitle {
+  font-size: 1.25rem;
+  color: var(--color-light-gray);
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+/* Story Section */
+.story-section {
+  background: var(--color-charcoal);
+}
+
+.story-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3xl);
+  align-items: center;
+}
+
+.story-content h2 {
+  font-size: 2.5rem;
+  margin: var(--space-sm) 0 var(--space-lg);
+}
+
+.story-content p {
+  margin-bottom: var(--space-md);
+  font-size: 1.0625rem;
+}
+
+.story-image {
+  position: relative;
+}
+
+.image-frame {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
+}
+
+.image-frame img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.story-stats {
+  display: flex;
+  gap: var(--space-lg);
+  margin-top: var(--space-lg);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-lg);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: var(--color-gray);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Mission Section */
+.mission-section {
+  background: var(--color-black);
+  padding: var(--space-4xl) 0;
+}
+
+.mission-card {
+  text-align: center;
+  padding: var(--space-3xl);
+  background: linear-gradient(135deg, rgba(41, 151, 255, 0.08), rgba(41, 151, 255, 0.02));
+  border: 1px solid rgba(41, 151, 255, 0.2);
+  border-radius: var(--radius-xl);
+}
+
+.mission-card h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.5;
+  margin: var(--space-lg) 0;
+}
+
+.mission-card p {
+  font-size: 1.125rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* Values Section */
+.values-section {
+  background: var(--color-charcoal);
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-lg);
+}
+
+.value-card {
+  padding: var(--space-xl);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-medium);
+}
+
+.value-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateY(-4px);
+}
+
+.value-icon {
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, rgba(41, 151, 255, 0.2), rgba(41, 151, 255, 0.05));
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-accent);
+  margin-bottom: var(--space-lg);
+}
+
+.value-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: var(--space-sm);
+}
+
+.value-card p {
+  font-size: 0.9375rem;
+  color: var(--color-gray);
+}
+
+/* Approach Section */
+.approach-section {
+  background: var(--color-black);
+}
+
+.approach-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3xl);
+  align-items: center;
+}
+
+.approach-text h2 {
+  font-size: 2.5rem;
+  margin: var(--space-sm) 0 var(--space-lg);
+}
+
+.approach-text > p {
+  font-size: 1.0625rem;
+  margin-bottom: var(--space-xl);
+}
+
+.approach-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.approach-list li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  color: var(--color-silver);
+}
+
+.approach-list li .icon {
+  color: var(--color-accent);
+}
+
+.approach-image {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
+}
+
+.approach-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Timeline Section */
+.timeline-section {
+  background: var(--color-charcoal);
+}
+
+.timeline {
+  display: flex;
+  gap: var(--space-lg);
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.timeline-item {
+  flex: 1;
+  padding: var(--space-xl);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-lg);
+  position: relative;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -var(--space-lg);
+  width: var(--space-lg);
+  height: 2px;
+  background: var(--color-accent);
+  opacity: 0.3;
+}
+
+.timeline-item:last-child::before {
+  display: none;
+}
+
+.timeline-year {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  margin-bottom: var(--space-sm);
+}
+
+.timeline-content h3 {
+  font-size: 1.125rem;
+  margin-bottom: var(--space-xs);
+}
+
+.timeline-content p {
+  font-size: 0.9375rem;
+  color: var(--color-gray);
+}
+
+/* CTA Section */
+.about-page .cta-section {
+  background: var(--color-black);
+}
+
+.about-page .cta-card {
+  text-align: center;
+  padding: var(--space-3xl);
+  background: var(--color-charcoal);
+  border-radius: var(--radius-xl);
+}
+
+.about-page .cta-card h2 {
+  font-size: 2.5rem;
+  margin-bottom: var(--space-md);
+}
+
+.about-page .cta-card p {
+  font-size: 1.125rem;
+  color: var(--color-light-gray);
+  margin-bottom: var(--space-xl);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .story-grid,
+  .approach-content {
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+  }
+
+  .values-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .timeline {
+    flex-direction: column;
+  }
+
+  .timeline-item::before {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-hero {
+    padding: 10rem var(--space-lg) 4rem;
+  }
+
+  .values-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .story-stats {
+    flex-direction: column;
+  }
+
+  .mission-card {
+    padding: var(--space-xl);
+  }
+}
+
