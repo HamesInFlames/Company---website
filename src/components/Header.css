@@ -25,7 +25,7 @@
 }
 
 .logo-image {
-  height: 130px;
+  height: 195px;
   width: auto;
   object-fit: contain;
 }
@@ -176,7 +176,7 @@
 
 @media (max-width: 480px) {
   .logo-image {
-    height: 80px;
+    height: 120px;
   }
 
   .mobile-menu {
