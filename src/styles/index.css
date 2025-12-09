@@ -57,7 +57,7 @@
   --max-width: 1200px;
   --max-width-narrow: 900px;
   --max-width-wide: 1400px;
-  --header-height: 80px;
+  --header-height: 100px;
   
   /* Transitions */
   --transition-fast: 0.2s ease;
