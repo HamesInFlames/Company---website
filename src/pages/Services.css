@@ -11,7 +11,7 @@
 .services-hero-bg {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(41, 151, 255, 0.1), transparent);
+  background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(201, 169, 98, 0.1), transparent);
   z-index: 0;
 }
 
@@ -101,8 +101,8 @@
 .category-icon {
   width: var(--icon-lg);
   height: var(--icon-lg);
-  background: linear-gradient(135deg, rgba(41, 151, 255, 0.2), rgba(41, 151, 255, 0.05));
-  border: 1px solid rgba(41, 151, 255, 0.3);
+  background: linear-gradient(135deg, rgba(201, 169, 98, 0.2), rgba(201, 169, 98, 0.05));
+  border: 1px solid rgba(201, 169, 98, 0.3);
   border-radius: var(--radius-lg);
   display: flex;
   align-items: center;
@@ -147,7 +147,7 @@
 .service-item-indicator {
   width: 32px;
   height: 32px;
-  background: rgba(41, 151, 255, 0.15);
+  background: rgba(201, 169, 98, 0.15);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -178,8 +178,8 @@
   align-items: center;
   gap: var(--space-2xl);
   padding: var(--space-3xl);
-  background: linear-gradient(135deg, rgba(41, 151, 255, 0.1), rgba(41, 151, 255, 0.02));
-  border: 1px solid rgba(41, 151, 255, 0.2);
+  background: linear-gradient(135deg, rgba(201, 169, 98, 0.1), rgba(201, 169, 98, 0.02));
+  border: 1px solid rgba(201, 169, 98, 0.2);
   border-radius: var(--radius-xl);
 }
 

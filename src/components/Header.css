@@ -21,27 +21,13 @@
 .header-logo {
   display: flex;
   align-items: center;
-  gap: var(--space-sm);
   z-index: 10;
 }
 
-.logo-icon {
-  width: 40px;
-  height: 40px;
-  background: var(--color-white);
-  color: var(--color-black);
-  border-radius: var(--radius-sm);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-size: 1.25rem;
-}
-
-.logo-text {
-  font-weight: 600;
-  font-size: 1.125rem;
-  letter-spacing: -0.02em;
+.logo-image {
+  height: 45px;
+  width: auto;
+  object-fit: contain;
 }
 
 .header-nav {
@@ -189,12 +175,14 @@
 }
 
 @media (max-width: 480px) {
-  .logo-text {
-    font-size: 1rem;
+  .logo-image {
+    height: 36px;
   }
 
   .mobile-menu {
     max-width: 100%;
   }
 }
+
+
 

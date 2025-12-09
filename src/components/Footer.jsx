@@ -10,8 +10,7 @@ function Footer() {
         <div className="footer-top">
           <div className="footer-brand">
             <Link to="/" className="footer-logo">
-              <div className="logo-icon">K</div>
-              <span className="logo-text">Kim Consultant</span>
+              <img src="/logo.png" alt="Kim Consultant" className="footer-logo-image" />
             </Link>
             <p className="footer-tagline">
               Building digital solutions for Toronto's local businesses.
@@ -74,4 +73,6 @@ function Footer() {
 }
 
 export default Footer
+
+
 

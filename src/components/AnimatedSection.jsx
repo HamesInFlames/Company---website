@@ -18,3 +18,5 @@ function AnimatedSection({ children, className = '', delay = 0, ...props }) {
 
 export default AnimatedSection
 
+
+
