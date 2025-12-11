@@ -27,13 +27,6 @@ const values = [
   }
 ]
 
-const milestones = [
-  { year: '2019', title: 'Founded', description: 'Started helping Toronto businesses with their digital needs.' },
-  { year: '2020', title: 'Growth', description: 'Expanded services to include custom software development.' },
-  { year: '2022', title: 'Milestone', description: 'Helped 50+ local businesses transform digitally.' },
-  { year: '2024', title: 'Evolution', description: 'Launched comprehensive digital strategy consulting.' }
-]
-
 function Hero() {
   const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
   
@@ -54,69 +47,6 @@ function Hero() {
           in the digital landscape through websites, software, and strategic consulting.
         </p>
       </animated.div>
-    </section>
-  )
-}
-
-function Story() {
-  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
-  
-  const leftSpring = useSpring({
-    opacity: inView ? 1 : 0,
-    transform: inView ? 'translateX(0px)' : 'translateX(-30px)',
-    config: { mass: 1, tension: 80, friction: 26 }
-  })
-
-  const rightSpring = useSpring({
-    opacity: inView ? 1 : 0,
-    transform: inView ? 'translateX(0px)' : 'translateX(30px)',
-    delay: 200,
-    config: { mass: 1, tension: 80, friction: 26 }
-  })
-
-  return (
-    <section className="section story-section" ref={ref}>
-      <div className="container">
-        <div className="story-grid">
-          <animated.div style={leftSpring} className="story-content">
-            <span className="section-label">Our Story</span>
-            <h2>From Vision to Digital Reality</h2>
-            <p>
-              Kim Consultant was founded with a simple mission: to bridge the gap between 
-              Toronto's small and medium businesses and the digital tools they need to succeed.
-            </p>
-            <p>
-              Having witnessed countless local businesses struggle with outdated websites, 
-              inefficient processes, and missed digital opportunities, we set out to provide 
-              accessible, high-quality technology solutions tailored specifically for the 
-              needs and budgets of local entrepreneurs.
-            </p>
-            <p>
-              Today, we partner with bakeries, cafés, fitness studios, contractors, and 
-              countless other local businesses to create digital experiences that drive 
-              real results—more customers, streamlined operations, and sustainable growth.
-            </p>
-          </animated.div>
-          <animated.div style={rightSpring} className="story-image">
-            <div className="image-frame">
-              <img 
-                src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80" 
-                alt="Professional workspace with laptop and coffee" 
-              />
-            </div>
-            <div className="story-stats">
-              <div className="stat">
-                <span className="stat-number">50+</span>
-                <span className="stat-label">Clients Served</span>
-              </div>
-              <div className="stat">
-                <span className="stat-number">5+</span>
-                <span className="stat-label">Years Experience</span>
-              </div>
-            </div>
-          </animated.div>
-        </div>
-      </div>
     </section>
   )
 }
@@ -236,38 +166,6 @@ function Approach() {
   )
 }
 
-function Timeline() {
-  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
-  
-  const trail = useTrail(milestones.length, {
-    opacity: inView ? 1 : 0,
-    transform: inView ? 'translateX(0px)' : 'translateX(-30px)',
-    config: { mass: 1, tension: 80, friction: 26 }
-  })
-
-  return (
-    <section className="section timeline-section" ref={ref}>
-      <div className="container">
-        <div className="section-header">
-          <span className="section-label">Our Journey</span>
-          <h2>Growing Together</h2>
-        </div>
-        <div className="timeline">
-          {trail.map((style, index) => (
-            <animated.div key={milestones[index].year} style={style} className="timeline-item">
-              <div className="timeline-year">{milestones[index].year}</div>
-              <div className="timeline-content">
-                <h3>{milestones[index].title}</h3>
-                <p>{milestones[index].description}</p>
-              </div>
-            </animated.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
 function CTA() {
   const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
   
@@ -298,17 +196,16 @@ function About() {
   return (
     <div className="page about-page">
       <Hero />
-      <Story />
       <Mission />
       <Values />
       <Approach />
-      <Timeline />
       <CTA />
     </div>
   )
 }
 
 export default About
+
 
 
 
