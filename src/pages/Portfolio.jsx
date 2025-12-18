@@ -5,14 +5,16 @@ import { useInView } from 'react-intersection-observer'
 import Icon from '../components/Icon'
 import './Portfolio.css'
 
-const demoProjects = [
+// Real client projects
+const clientProjects = [
   {
     id: 1,
     title: 'Grodzinski Bakery',
     category: 'Bakery & Café',
     industry: 'Food & Beverage',
+    isClient: true,
     description: 'A warm, inviting website for a kosher-friendly artisan bakery. Features large photography of fresh breads and pastries, online menu, location information, and catering inquiry forms.',
-    longDescription: 'We created a digital presence that captures the warmth and tradition of this beloved Toronto bakery. The design uses earthy tones and warm beige/brown color palette to evoke the feeling of freshly baked goods. Large hero images showcase their artisan breads and pastries.',
+    longDescription: 'Our first client project! We created a digital presence that captures the warmth and tradition of this beloved Toronto bakery. The design uses earthy tones and warm beige/brown color palette to evoke the feeling of freshly baked goods. Large hero images showcase their artisan breads and pastries.',
     image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1200&q=80',
     thumbnail: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=600&q=80',
     color: '#8B7355',
@@ -24,21 +26,27 @@ const demoProjects = [
     title: 'Lumière Pâtisserie',
     category: 'Luxury French Bakery',
     industry: 'Food & Beverage',
+    isClient: true,
     description: 'An elegant online presence for a premium French pâtisserie. Features sophisticated serif typography, soft pastel colors, and premium dessert photography.',
-    longDescription: 'This luxury French bakery needed a website that matched their premium brand positioning. We designed an elegant experience with refined typography, delicate pastel color schemes, and carefully curated photography that showcases their exquisite pastries.',
+    longDescription: 'Our second client trusted us to match their premium brand positioning. We designed an elegant experience with refined typography, delicate pastel color schemes, and carefully curated photography that showcases their exquisite pastries.',
     image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=1200&q=80',
     thumbnail: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600&q=80',
     color: '#D4A5A5',
     features: ['Elegant Design', 'Product Showcase', 'Online Ordering', 'Gift Cards', 'Newsletter'],
     tools: ['Next.js', 'Shopify', 'Stripe']
-  },
+  }
+]
+
+// Demo/concept projects to showcase capabilities
+const demoProjects = [
   {
     id: 3,
     title: 'Pulse Fitness Studio',
     category: 'Fitness & Gym',
     industry: 'Health & Wellness',
-    description: 'A high-energy landing page for a modern fitness studio. Bold headings, dynamic imagery, membership pricing, class schedules, and integrated booking system.',
-    longDescription: 'Pulse needed a website that reflected their energetic brand and converted visitors into members. We created a bold, modern design with striking typography, high-contrast visuals, and seamless integration with their booking system.',
+    isClient: false,
+    description: 'A concept design for a modern fitness studio. Bold headings, dynamic imagery, membership pricing, and integrated booking system.',
+    longDescription: 'This concept demonstrates our ability to create high-energy, conversion-focused websites. Bold, modern design with striking typography, high-contrast visuals, and seamless booking integration.',
     image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200&q=80',
     thumbnail: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80',
     color: '#FF6B35',
@@ -50,8 +58,9 @@ const demoProjects = [
     title: 'Brew & Bean Café',
     category: 'Coffee Shop',
     industry: 'Food & Beverage',
-    description: 'An urban café website with warm, inviting aesthetics. Features menu showcase, loyalty program integration, store locations, and online ordering capabilities.',
-    longDescription: 'This local coffee shop wanted a website that captured the cozy, community-focused atmosphere of their physical location. We designed a warm, inviting site with rich brown tones, beautiful product photography, and a loyalty program that keeps customers coming back.',
+    isClient: false,
+    description: 'A concept café website with warm, inviting aesthetics. Features menu showcase, loyalty program integration, and online ordering.',
+    longDescription: 'This concept showcases our ability to create warm, community-focused websites. Rich brown tones, beautiful product photography, and a loyalty program that keeps customers coming back.',
     image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1200&q=80',
     thumbnail: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=80',
     color: '#6F4E37',
@@ -63,8 +72,9 @@ const demoProjects = [
     title: 'BuildRight Contractors',
     category: 'Home Improvement',
     industry: 'Construction & Trades',
-    description: 'A professional contractor website with trustworthy design. Service categories, project gallery, testimonials, and quote request system.',
-    longDescription: 'BuildRight needed a website that established trust and credibility while generating leads. We created a clean, professional design that showcases their work through a stunning project gallery and makes it easy for potential clients to request quotes.',
+    isClient: false,
+    description: 'A concept contractor website with trustworthy design. Service categories, project gallery, and quote request system.',
+    longDescription: 'This concept demonstrates our ability to establish trust and credibility while generating leads. Clean, professional design that showcases work through a stunning project gallery.',
     image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80',
     thumbnail: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80',
     color: '#4A5568',
@@ -73,7 +83,9 @@ const demoProjects = [
   }
 ]
 
-const categories = ['All', 'Food & Beverage', 'Health & Wellness', 'Construction & Trades']
+const allProjects = [...clientProjects, ...demoProjects]
+
+const categories = ['All', 'Client Projects', 'Demo Concepts']
 
 function Hero() {
   const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
@@ -89,10 +101,10 @@ function Hero() {
       <div className="portfolio-hero-bg"></div>
       <animated.div style={spring} className="container">
         <span className="section-label">Portfolio</span>
-        <h1>Demo Websites</h1>
+        <h1>Our Work</h1>
         <p className="portfolio-hero-subtitle">
-          Explore sample websites showcasing our design capabilities, attention to detail, 
-          and the diverse industries we serve.
+          Client projects and concept designs showcasing our capabilities and the quality 
+          you can expect when working with us.
         </p>
       </animated.div>
     </section>
@@ -110,7 +122,8 @@ function ProjectCard({ project, index }) {
   })
 
   return (
-    <animated.article ref={ref} style={spring} className="portfolio-card">
+    <animated.article ref={ref} style={spring} className={`portfolio-card ${project.isClient ? 'client-project' : ''}`}>
+      {project.isClient && <span className="client-badge">Client Project</span>}
       <div className="portfolio-card-image">
         <img src={project.thumbnail} alt={project.title} loading="lazy" />
         <div className="portfolio-card-overlay">
@@ -126,7 +139,7 @@ function ProjectCard({ project, index }) {
       <div className="portfolio-card-content">
         <div className="portfolio-card-meta">
           <span className="portfolio-category">{project.category}</span>
-          <span className="portfolio-industry">{project.industry}</span>
+          <span className="portfolio-industry">{project.isClient ? 'Client' : 'Demo'}</span>
         </div>
         <h3>{project.title}</h3>
         <p>{project.description}</p>
@@ -145,8 +158,10 @@ function ProjectGrid() {
   const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
 
   const filteredProjects = activeCategory === 'All' 
-    ? demoProjects 
-    : demoProjects.filter(p => p.industry === activeCategory)
+    ? allProjects 
+    : activeCategory === 'Client Projects'
+      ? clientProjects
+      : demoProjects
 
   const headerSpring = useSpring({
     opacity: inView ? 1 : 0,
@@ -185,14 +200,14 @@ function ProjectShowcase() {
     <section className="section showcase-section" ref={ref}>
       <div className="container container-wide">
         <div className="section-header">
-          <span className="section-label">Featured Demo</span>
-          <h2>Detailed Case Studies</h2>
+          <span className="section-label">Case Studies</span>
+          <h2>Project Deep Dives</h2>
           <p className="section-subtitle">
-            Deep dives into select projects showcasing our process and results.
+            Detailed looks at our work—both client projects and concept designs.
           </p>
         </div>
         
-        {demoProjects.map((project, index) => (
+        {allProjects.map((project, index) => (
           <ShowcaseItem key={project.id} project={project} index={index} />
         ))}
       </div>
@@ -235,9 +250,12 @@ function ShowcaseItem({ project, index }) {
       </div>
       <div className="showcase-content">
         <div className="showcase-header">
-          <span className="showcase-category" style={{ color: project.color }}>
-            {project.category}
-          </span>
+          <div className="showcase-badges">
+            <span className="showcase-category" style={{ color: project.color }}>
+              {project.category}
+            </span>
+            {project.isClient && <span className="showcase-client-badge">Client Project</span>}
+          </div>
           <h3>{project.title}</h3>
         </div>
         <p className="showcase-description">{project.longDescription}</p>

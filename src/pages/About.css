@@ -11,7 +11,7 @@
 .about-hero-bg {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(41, 151, 255, 0.1), transparent);
+  background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(201, 169, 98, 0.1), transparent);
   z-index: 0;
 }
 
@@ -108,8 +108,8 @@
 .mission-card {
   text-align: center;
   padding: var(--space-3xl);
-  background: linear-gradient(135deg, rgba(41, 151, 255, 0.08), rgba(41, 151, 255, 0.02));
-  border: 1px solid rgba(41, 151, 255, 0.2);
+  background: linear-gradient(135deg, rgba(201, 169, 98, 0.08), rgba(201, 169, 98, 0.02));
+  border: 1px solid rgba(201, 169, 98, 0.25);
   border-radius: var(--radius-xl);
 }
 
@@ -155,7 +155,7 @@
 .value-icon {
   width: var(--icon-lg);
   height: var(--icon-lg);
-  background: linear-gradient(135deg, rgba(41, 151, 255, 0.2), rgba(41, 151, 255, 0.05));
+  background: linear-gradient(135deg, rgba(201, 169, 98, 0.2), rgba(201, 169, 98, 0.05));
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;

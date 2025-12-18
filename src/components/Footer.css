@@ -27,26 +27,12 @@
 .footer-logo {
   display: flex;
   align-items: center;
-  gap: var(--space-sm);
 }
 
-.footer-logo .logo-icon {
-  width: 36px;
-  height: 36px;
-  background: var(--color-white);
-  color: var(--color-black);
-  border-radius: var(--radius-sm);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-size: 1rem;
-}
-
-.footer-logo .logo-text {
-  font-weight: 600;
-  font-size: 1rem;
-  color: var(--color-white);
+.footer-logo-image {
+  height: 150px;
+  width: auto;
+  object-fit: contain;
 }
 
 .footer-tagline {
@@ -159,4 +145,6 @@
     grid-template-columns: 1fr;
   }
 }
+
+
 

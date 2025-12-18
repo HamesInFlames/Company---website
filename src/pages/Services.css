@@ -11,7 +11,7 @@
 .services-hero-bg {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(41, 151, 255, 0.1), transparent);
+  background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(201, 169, 98, 0.1), transparent);
   z-index: 0;
 }
 
@@ -38,11 +38,14 @@
   position: sticky;
   top: var(--header-height);
   z-index: 100;
-  background: rgba(10, 10, 10, 0.9);
+  background: rgba(10, 10, 10, 0.95);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   padding: var(--space-md) 0;
+  height: 60px;
+  display: flex;
+  align-items: center;
 }
 
 .services-nav-inner {
@@ -95,14 +98,19 @@
 
 .service-category-header {
   position: sticky;
-  top: calc(var(--header-height) + 80px);
+  top: calc(var(--header-height) + 60px + 16px); /* header (80px) + nav (60px) + padding */
+  z-index: 50;
+}
+
+.service-category-header-content {
+  /* Animation wrapper inside sticky container */
 }
 
 .category-icon {
   width: var(--icon-lg);
   height: var(--icon-lg);
-  background: linear-gradient(135deg, rgba(41, 151, 255, 0.2), rgba(41, 151, 255, 0.05));
-  border: 1px solid rgba(41, 151, 255, 0.3);
+  background: linear-gradient(135deg, rgba(201, 169, 98, 0.2), rgba(201, 169, 98, 0.05));
+  border: 1px solid rgba(201, 169, 98, 0.3);
   border-radius: var(--radius-lg);
   display: flex;
   align-items: center;
@@ -147,7 +155,7 @@
 .service-item-indicator {
   width: 32px;
   height: 32px;
-  background: rgba(41, 151, 255, 0.15);
+  background: rgba(201, 169, 98, 0.18);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -178,8 +186,8 @@
   align-items: center;
   gap: var(--space-2xl);
   padding: var(--space-3xl);
-  background: linear-gradient(135deg, rgba(41, 151, 255, 0.1), rgba(41, 151, 255, 0.02));
-  border: 1px solid rgba(41, 151, 255, 0.2);
+  background: linear-gradient(135deg, rgba(201, 169, 98, 0.1), rgba(201, 169, 98, 0.02));
+  border: 1px solid rgba(201, 169, 98, 0.25);
   border-radius: var(--radius-xl);
 }
 

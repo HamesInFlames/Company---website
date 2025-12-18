@@ -27,13 +27,6 @@ const values = [
   }
 ]
 
-const milestones = [
-  { year: '2019', title: 'Founded', description: 'Started helping Toronto businesses with their digital needs.' },
-  { year: '2020', title: 'Growth', description: 'Expanded services to include custom software development.' },
-  { year: '2022', title: 'Milestone', description: 'Helped 50+ local businesses transform digitally.' },
-  { year: '2024', title: 'Evolution', description: 'Launched comprehensive digital strategy consulting.' }
-]
-
 function Hero() {
   const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
   
@@ -48,10 +41,10 @@ function Hero() {
       <div className="about-hero-bg"></div>
       <animated.div style={spring} className="container">
         <span className="section-label">About Kim Consultant</span>
-        <h1>Building Digital Success for Toronto Businesses</h1>
+        <h1>A Fresh Approach to Digital for Local Businesses</h1>
         <p className="about-hero-subtitle">
-          A technology partner dedicated to helping local businesses thrive 
-          in the digital landscape through websites, software, and strategic consulting.
+          We're a new Toronto-based consultancy passionate about helping local businesses 
+          build beautiful, effective digital experiences that drive real results.
         </p>
       </animated.div>
     </section>
@@ -80,21 +73,23 @@ function Story() {
         <div className="story-grid">
           <animated.div style={leftSpring} className="story-content">
             <span className="section-label">Our Story</span>
-            <h2>From Vision to Digital Reality</h2>
+            <h2>Just Getting Started</h2>
             <p>
-              Kim Consultant was founded with a simple mission: to bridge the gap between 
-              Toronto's small and medium businesses and the digital tools they need to succeed.
+              Kim Consultant was born from a simple observation: too many amazing local 
+              businesses are held back by outdated or non-existent digital presences. 
+              We're here to change that.
             </p>
             <p>
-              Having witnessed countless local businesses struggle with outdated websites, 
-              inefficient processes, and missed digital opportunities, we set out to provide 
-              accessible, high-quality technology solutions tailored specifically for the 
-              needs and budgets of local entrepreneurs.
+              We recently launched with a focus on what we do best—creating stunning, 
+              functional websites and digital solutions for Toronto's local businesses. 
+              Our first clients, Grodzinski Bakery and Lumière Pâtisserie, trusted us 
+              with their digital transformation, and we're proud of the results.
             </p>
             <p>
-              Today, we partner with bakeries, cafés, fitness studios, contractors, and 
-              countless other local businesses to create digital experiences that drive 
-              real results—more customers, streamlined operations, and sustainable growth.
+              We may be new, but we bring fresh perspectives, modern techniques, and 
+              genuine passion to every project. We're not trying to be everything to 
+              everyone—we're focused on being the best partner for local businesses 
+              ready to level up their digital game.
             </p>
           </animated.div>
           <animated.div style={rightSpring} className="story-image">
@@ -106,12 +101,12 @@ function Story() {
             </div>
             <div className="story-stats">
               <div className="stat">
-                <span className="stat-number">50+</span>
-                <span className="stat-label">Clients Served</span>
+                <span className="stat-number">2</span>
+                <span className="stat-label">Happy Clients</span>
               </div>
               <div className="stat">
-                <span className="stat-number">5+</span>
-                <span className="stat-label">Years Experience</span>
+                <span className="stat-number">100%</span>
+                <span className="stat-label">Satisfaction</span>
               </div>
             </div>
           </animated.div>
@@ -135,11 +130,12 @@ function Mission() {
       <animated.div style={spring} className="container container-narrow">
         <div className="mission-card">
           <span className="section-label">Our Mission</span>
-          <h2>"To empower Toronto's local businesses with digital tools that drive growth, 
-          efficiency, and lasting success."</h2>
+          <h2>"To give Toronto's local businesses the same quality digital presence 
+          that big brands enjoy—at prices that make sense."</h2>
           <p>
-            We believe that every business—regardless of size—deserves access to 
-            powerful technology solutions. Our mission is to make that a reality.
+            We believe stunning websites and smart digital tools shouldn't be reserved 
+            for corporations with massive budgets. Every local bakery, café, and shop 
+            deserves to shine online.
           </p>
         </div>
       </animated.div>
@@ -197,28 +193,28 @@ function Approach() {
         <animated.div style={spring} className="approach-content">
           <div className="approach-text">
             <span className="section-label">Our Approach</span>
-            <h2>Partnership, Not Just Service</h2>
+            <h2>Small Team, Big Dedication</h2>
             <p>
-              We don't just build websites and walk away. We become your technology partner, 
-              invested in your long-term success. From initial consultation to ongoing support, 
-              we're with you every step of the way.
+              Being a new consultancy means you get our full attention. No passing you off 
+              to junior staff or automated systems—when you work with us, you work directly 
+              with the people building your project.
             </p>
             <ul className="approach-list">
               <li>
                 <Icon name="checkCircle" size={20} />
-                <span>Personalized solutions for your unique needs</span>
+                <span>Direct communication with your project lead</span>
               </li>
               <li>
                 <Icon name="checkCircle" size={20} />
-                <span>Ongoing support and optimization</span>
+                <span>Flexible timelines that work for your business</span>
               </li>
               <li>
                 <Icon name="checkCircle" size={20} />
-                <span>Clear communication and regular updates</span>
+                <span>Honest pricing with no hidden fees</span>
               </li>
               <li>
                 <Icon name="checkCircle" size={20} />
-                <span>Scalable solutions that grow with you</span>
+                <span>We're invested in your success—your growth is our growth</span>
               </li>
             </ul>
           </div>
@@ -231,38 +227,6 @@ function Approach() {
             </div>
           </div>
         </animated.div>
-      </div>
-    </section>
-  )
-}
-
-function Timeline() {
-  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
-  
-  const trail = useTrail(milestones.length, {
-    opacity: inView ? 1 : 0,
-    transform: inView ? 'translateX(0px)' : 'translateX(-30px)',
-    config: { mass: 1, tension: 80, friction: 26 }
-  })
-
-  return (
-    <section className="section timeline-section" ref={ref}>
-      <div className="container">
-        <div className="section-header">
-          <span className="section-label">Our Journey</span>
-          <h2>Growing Together</h2>
-        </div>
-        <div className="timeline">
-          {trail.map((style, index) => (
-            <animated.div key={milestones[index].year} style={style} className="timeline-item">
-              <div className="timeline-year">{milestones[index].year}</div>
-              <div className="timeline-content">
-                <h3>{milestones[index].title}</h3>
-                <p>{milestones[index].description}</p>
-              </div>
-            </animated.div>
-          ))}
-        </div>
       </div>
     </section>
   )
@@ -281,12 +245,13 @@ function CTA() {
     <section className="section cta-section" ref={ref}>
       <animated.div style={spring} className="container">
         <div className="cta-card">
-          <h2>Let's Work Together</h2>
+          <h2>Be Part of Our Story</h2>
           <p>
-            Ready to transform your business? Let's start a conversation about your digital goals.
+            We're just getting started and looking for great local businesses to partner with. 
+            Could yours be next?
           </p>
           <Link to="/contact" className="btn btn-primary btn-large">
-            Get in Touch
+            Let's Chat
           </Link>
         </div>
       </animated.div>
@@ -302,7 +267,6 @@ function About() {
       <Mission />
       <Values />
       <Approach />
-      <Timeline />
       <CTA />
     </div>
   )

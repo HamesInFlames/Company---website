@@ -4,15 +4,16 @@ import { useInView } from 'react-intersection-observer'
 import Icon from '../components/Icon'
 import './Home.css'
 
-// Demo websites data
-const demoProjects = [
+// Client projects
+const clientProjects = [
   {
     id: 1,
     title: 'Grodzinski Bakery',
     category: 'Bakery & Café',
     description: 'A warm, inviting website for a kosher-friendly artisan bakery featuring fresh breads and pastries.',
     image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=800&q=80',
-    color: '#8B7355'
+    color: '#8B7355',
+    isClient: true
   },
   {
     id: 2,
@@ -20,31 +21,39 @@ const demoProjects = [
     category: 'Luxury French Bakery',
     description: 'An elegant online presence for a premium French pâtisserie with sophisticated branding.',
     image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800&q=80',
-    color: '#D4A5A5'
-  },
+    color: '#D4A5A5',
+    isClient: true
+  }
+]
+
+// Demo concepts to showcase capabilities
+const demoProjects = [
   {
     id: 3,
     title: 'Pulse Fitness Studio',
-    category: 'Fitness & Gym',
-    description: 'A high-energy landing page for a modern fitness studio with membership booking integration.',
+    category: 'Demo • Fitness & Gym',
+    description: 'A concept design for a modern fitness studio with membership booking integration.',
     image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80',
-    color: '#FF6B35'
+    color: '#FF6B35',
+    isClient: false
   },
   {
     id: 4,
     title: 'Brew & Bean Café',
-    category: 'Coffee Shop',
-    description: 'An urban café website with warm aesthetics, menu showcase, and loyalty program integration.',
+    category: 'Demo • Coffee Shop',
+    description: 'A concept café website with warm aesthetics, menu showcase, and loyalty features.',
     image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&q=80',
-    color: '#6F4E37'
+    color: '#6F4E37',
+    isClient: false
   },
   {
     id: 5,
     title: 'BuildRight Contractors',
-    category: 'Home Improvement',
-    description: 'A professional contractor website with service categories, gallery, and quote request system.',
+    category: 'Demo • Home Services',
+    description: 'A concept contractor website with service categories and quote request system.',
     image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80',
-    color: '#4A5568'
+    color: '#4A5568',
+    isClient: false
   }
 ]
 
@@ -169,6 +178,7 @@ function Services() {
 
 function FeaturedWork() {
   const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
+  const allProjects = [...clientProjects, ...demoProjects]
 
   const headerSpring = useSpring({
     opacity: inView ? 1 : 0,
@@ -176,7 +186,7 @@ function FeaturedWork() {
     config: { mass: 1, tension: 80, friction: 26 }
   })
 
-  const trail = useTrail(demoProjects.length, {
+  const trail = useTrail(allProjects.length, {
     opacity: inView ? 1 : 0,
     transform: inView ? 'scale(1)' : 'scale(0.95)',
     delay: 200,
@@ -187,22 +197,23 @@ function FeaturedWork() {
     <section className="section featured-section" ref={ref}>
       <div className="container container-wide">
         <animated.div style={headerSpring} className="section-header">
-          <span className="section-label">Featured Work</span>
-          <h2 className="section-title">Demo Websites</h2>
+          <span className="section-label">Our Work</span>
+          <h2 className="section-title">Client Projects & Demos</h2>
           <p className="section-subtitle">
-            Explore sample websites showcasing our design capabilities and attention to detail.
+            Real client work alongside concept designs showcasing what we can build for you.
           </p>
         </animated.div>
         <div className="featured-grid">
           {trail.map((style, index) => {
-            const project = demoProjects[index]
+            const project = allProjects[index]
             return (
-              <animated.div key={project.id} style={style} className="project-card">
+              <animated.div key={project.id} style={style} className={`project-card ${project.isClient ? 'client-project' : ''}`}>
+                {project.isClient && <span className="client-badge">Client Project</span>}
                 <div className="project-image">
                   <img src={project.image} alt={project.title} loading="lazy" />
                   <div className="project-overlay">
                     <Link to="/portfolio" className="btn btn-primary">
-                      View Demo <Icon name="externalLink" size={16} />
+                      View Details <Icon name="externalLink" size={16} />
                     </Link>
                   </div>
                 </div>

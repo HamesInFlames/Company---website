@@ -6,11 +6,34 @@ import './Pricing.css'
 
 const websitePackages = [
   {
-    name: 'Small',
-    subtitle: 'Starter',
+    name: 'Landing Essentials',
+    subtitle: 'Single-Page Website',
+    price: '$1,000',
+    priceRange: '$1,000 upfront',
+    idealFor: 'Service businesses, events, personal brands',
+    description: 'A simple, all-in-one single-page website — perfect for service businesses, events, or personal brands.',
+    features: [
+      '1-page responsive website (scroll-based layout)',
+      'Hero section with headline and primary CTA',
+      'About / intro section',
+      'Services or features block',
+      'Testimonials or social proof section',
+      'Contact form + Google Maps embed',
+      'Mobile-optimized design',
+      'Fast-loading layout with basic on-page SEO',
+      'Hosting, SSL, backups & updates (through maintenance)'
+    ],
+    popular: false,
+    maintenanceRequired: '$100/mo required',
+    note: 'Note: structural layout or design changes after launch are not included. For bigger changes, you can apply the value of this package toward a full website upgrade.'
+  },
+  {
+    name: 'Starter',
+    subtitle: 'Basic',
     price: '$1,500',
     priceRange: '$1,500 – $3,000',
-    description: 'Perfect for new businesses needing a professional online presence.',
+    idealFor: 'Local shops, cafés, solo services',
+    description: 'Perfect for local businesses needing a clean, professional online presence.',
     features: [
       '3–5 page website',
       'Mobile responsive design',
@@ -22,10 +45,11 @@ const websitePackages = [
     popular: false
   },
   {
-    name: 'Medium',
-    subtitle: 'Business',
+    name: 'Business',
+    subtitle: 'Growth',
     price: '$4,000',
     priceRange: '$4,000 – $7,000',
+    idealFor: 'Businesses with 5–10 pages',
     description: 'For growing businesses that need more functionality and customization.',
     features: [
       '5–10 page website',
@@ -39,10 +63,11 @@ const websitePackages = [
     popular: true
   },
   {
-    name: 'Large',
+    name: 'Enterprise',
     subtitle: 'Premium',
     price: '$8,000',
     priceRange: '$8,000 – $15,000',
+    idealFor: 'Custom design, CRM, bookings',
     description: 'Comprehensive solutions for established businesses with complex needs.',
     features: [
       '10–20 page website',
@@ -54,58 +79,56 @@ const websitePackages = [
       'Advanced analytics',
       '90-day support included'
     ],
-    popular: false
+    popular: false,
+    comingSoon: true
   }
 ]
 
 const maintenancePlans = [
   {
-    name: 'Lite',
-    level: 'Level 1',
+    name: 'Essential',
     price: '$50',
-    priceRange: '$50 – $75/mo',
-    description: 'Basic hosting and security for hands-off clients.',
+    priceRange: '$50 – $75',
+    tagline: 'Keep it running',
     features: [
-      'Secure hosting',
+      'Secure hosting & SSL',
       'Daily backups',
       'Security monitoring',
-      'SSL certificate',
-      'Pay-per-edit ($80–100/hr)'
+      'Pay-per-edit support'
     ],
-    hourlyRate: '$80–100/hr'
+    hourlyRate: '$80–100/hr',
+    popular: false
   },
   {
-    name: 'Standard',
-    level: 'Level 2',
+    name: 'Enhanced',
     price: '$150',
-    priceRange: '$150 – $250/mo',
-    description: 'Regular updates and support for active businesses.',
+    priceRange: '$150 – $250',
+    tagline: 'Stay ahead',
     features: [
-      'Everything in Lite',
+      'Everything in Essential',
       '2–3 hours of updates/mo',
-      'Content updates',
-      'Plugin/software updates',
-      'Lower per-edit rate ($60/hr)',
+      'Content & plugin updates',
+      'Strategy guidance',
       'Email support'
     ],
-    hourlyRate: '$60/hr'
+    hourlyRate: '$60/hr',
+    popular: true
   },
   {
     name: 'Premium',
-    level: 'Level 3',
     price: '$300',
-    priceRange: '$300 – $500/mo',
-    description: 'Full-service partnership for maximum growth.',
+    priceRange: '$300 – $500',
+    tagline: 'Full partnership',
     features: [
-      'Everything in Standard',
+      'Everything in Enhanced',
       'Unlimited minor edits',
       'Priority support',
-      'Quarterly strategy call',
-      '2 major upgrades yearly',
+      'Quarterly strategy calls',
       'Performance reports',
-      'Dedicated account manager'
+      'Dedicated manager'
     ],
-    hourlyRate: 'Included'
+    hourlyRate: 'Included',
+    popular: false
   }
 ]
 
@@ -123,10 +146,9 @@ function Hero() {
       <div className="pricing-hero-bg"></div>
       <animated.div style={spring} className="container">
         <span className="section-label">Pricing</span>
-        <h1>Transparent, Flexible Pricing</h1>
+        <h1>Choose a Package that Fits Your Business</h1>
         <p className="pricing-hero-subtitle">
-          Solutions sized like your favorite coffee – from starter to premium. 
-          Choose what fits your business.
+          Like your favorite coffee shop or gym, I offer clear tiers so you know exactly what you're getting.
         </p>
       </animated.div>
     </section>
@@ -142,65 +164,123 @@ function WebsitePackages() {
     config: { mass: 1, tension: 80, friction: 26 }
   })
 
-  const trail = useTrail(websitePackages.length, {
+  // Filter out Enterprise (coming soon) from main grid
+  const activePackages = websitePackages.filter(pkg => !pkg.comingSoon)
+  const enterprisePackage = websitePackages.find(pkg => pkg.comingSoon)
+
+  const trail = useTrail(activePackages.length, {
     opacity: inView ? 1 : 0,
     transform: inView ? 'translateY(0px)' : 'translateY(40px)',
     delay: 200,
     config: { mass: 1, tension: 80, friction: 26 }
   })
 
+  const enterpriseSpring = useSpring({
+    opacity: inView ? 1 : 0,
+    transform: inView ? 'translateY(0px)' : 'translateY(30px)',
+    delay: 400,
+    config: { mass: 1, tension: 80, friction: 26 }
+  })
+
+  const renderCard = (pkg) => (
+    <div key={pkg.name} className={`pricing-card ${pkg.popular ? 'popular' : ''} ${pkg.comingSoon ? 'coming-soon' : ''}`}>
+      {pkg.popular && <span className="popular-badge">Most Popular</span>}
+      {pkg.comingSoon && <span className="coming-soon-badge">COMING SOON</span>}
+      <div className="pricing-card-top">
+        <div className="pricing-tier">
+          <h3>{pkg.name}</h3>
+          <span className="tier-label">{pkg.subtitle}</span>
+        </div>
+        <div className="pricing-amount">
+          <span className="price">{pkg.price}</span>
+          {!pkg.comingSoon && <span className="price-suffix">starting</span>}
+        </div>
+        <span className="price-range">{pkg.priceRange}</span>
+      </div>
+      <div className="ideal-for">
+        <span className="ideal-label">Best for</span>
+        <span className="ideal-value">{pkg.idealFor}</span>
+      </div>
+      <ul className="pricing-features">
+        {pkg.features.map((feature, i) => (
+          <li key={i}>
+            <Icon name="check" size={14} />
+            <span>{feature}</span>
+          </li>
+        ))}
+      </ul>
+      {pkg.maintenanceRequired && (
+        <div className="maintenance-note">
+          <strong>{pkg.maintenanceRequired}</strong>
+        </div>
+      )}
+      {pkg.note && (
+        <div className="package-note">
+          <small>{pkg.note}</small>
+        </div>
+      )}
+      {pkg.comingSoon ? (
+        <button 
+          className="btn btn-secondary pricing-cta"
+          disabled
+        >
+          Coming Soon
+        </button>
+      ) : (
+        <Link 
+          to="/contact" 
+          className={`btn ${pkg.popular ? 'btn-primary' : 'btn-secondary'} pricing-cta`}
+        >
+          Get Started
+        </Link>
+      )}
+    </div>
+  )
+
   return (
     <section className="section packages-section" ref={ref}>
       <div className="container">
         <animated.div style={headerSpring} className="section-header">
-          <span className="section-label">Website Packages</span>
-          <h2>Upfront Development Cost</h2>
+          <span className="section-label">🧱 Website Design Tiers</span>
+          <h2>Upfront Cost</h2>
           <p className="section-subtitle">
             One-time investment to build your perfect website.
           </p>
         </animated.div>
         <div className="pricing-grid">
           {trail.map((style, index) => {
-            const pkg = websitePackages[index]
+            const pkg = activePackages[index]
             return (
-              <animated.div 
-                key={pkg.name} 
-                style={style} 
-                className={`pricing-card ${pkg.popular ? 'popular' : ''}`}
-              >
-                {pkg.popular && <span className="popular-badge">Most Popular</span>}
-                <div className="pricing-header">
-                  <div className="pricing-size">
-                    <span className="size-icon">{pkg.name.charAt(0)}</span>
-                    <div>
-                      <h3>{pkg.name}</h3>
-                      <span className="subtitle">{pkg.subtitle}</span>
-                    </div>
-                  </div>
-                  <div className="pricing-amount">
-                    <span className="price">{pkg.price}</span>
-                    <span className="price-range">{pkg.priceRange}</span>
-                  </div>
-                </div>
-                <p className="pricing-description">{pkg.description}</p>
-                <ul className="pricing-features">
-                  {pkg.features.map((feature, i) => (
-                    <li key={i}>
-                      <Icon name="check" size={16} />
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Link 
-                  to="/contact" 
-                  className={`btn ${pkg.popular ? 'btn-primary' : 'btn-secondary'} pricing-cta`}
-                >
-                  Get Started
-                </Link>
+              <animated.div key={pkg.name} style={style}>
+                {renderCard(pkg)}
               </animated.div>
             )
           })}
         </div>
+        {enterprisePackage && (
+          <animated.div style={enterpriseSpring} className="enterprise-section">
+            <div className="enterprise-card-wrapper">
+              {renderCard(enterprisePackage)}
+            </div>
+          </animated.div>
+        )}
+        <animated.div style={enterpriseSpring} className="pricing-help-section">
+          <div className="pricing-help-grid">
+            <div className="pricing-help-card">
+              <span className="help-icon">💡</span>
+              <h4>Need more flexibility?</h4>
+              <p>Apply your Landing Package value toward a full website later.</p>
+            </div>
+            <div className="pricing-help-card">
+              <span className="help-icon">📞</span>
+              <h4>Not sure what to choose?</h4>
+              <p>Book a free consultation and we'll help you decide.</p>
+              <Link to="/contact" className="btn btn-secondary btn-small" style={{ marginTop: 'var(--space-sm)' }}>
+                Book Consultation
+              </Link>
+            </div>
+          </div>
+        </animated.div>
       </div>
     </section>
   )
@@ -226,28 +306,31 @@ function MaintenancePlans() {
     <section className="section maintenance-section" ref={ref}>
       <div className="container">
         <animated.div style={headerSpring} className="section-header">
-          <span className="section-label">Maintenance Plans</span>
-          <h2>Monthly Support & Updates</h2>
+          <span className="section-label">🔧 Maintenance Tiers</span>
+          <h2>Monthly Plans</h2>
           <p className="section-subtitle">
-            Like a gym membership for your website – choose your level of support.
+            Ongoing support to keep your website running smoothly.
           </p>
         </animated.div>
         <div className="pricing-grid">
           {trail.map((style, index) => {
             const plan = maintenancePlans[index]
             return (
-              <animated.div key={plan.name} style={style} className="pricing-card maintenance-card">
-                <div className="pricing-header">
-                  <div className="pricing-level">
-                    <span className="level-badge">{plan.level}</span>
-                    <h3>{plan.name}</h3>
-                  </div>
+              <animated.div 
+                key={plan.name} 
+                style={style} 
+                className={`pricing-card maintenance-card ${plan.popular ? 'popular' : ''}`}
+              >
+                {plan.popular && <span className="popular-badge">Recommended</span>}
+                <div className="pricing-card-top">
+                  <h3 className="plan-name">{plan.name}</h3>
+                  <p className="plan-tagline">{plan.tagline}</p>
                   <div className="pricing-amount">
                     <span className="price">{plan.price}</span>
-                    <span className="price-range">{plan.priceRange}</span>
+                    <span className="price-suffix">/mo</span>
                   </div>
+                  <span className="price-range">{plan.priceRange}/mo</span>
                 </div>
-                <p className="pricing-description">{plan.description}</p>
                 <ul className="pricing-features">
                   {plan.features.map((feature, i) => (
                     <li key={i}>
@@ -256,17 +339,51 @@ function MaintenancePlans() {
                     </li>
                   ))}
                 </ul>
-                <div className="hourly-rate">
-                  <span className="rate-label">Additional Hours:</span>
-                  <span className="rate-value">{plan.hourlyRate}</span>
+                <div className="card-footer">
+                  <div className="hourly-rate-inline">
+                    <span className="rate-label">Extra hours:</span>
+                    <span className="rate-value">{plan.hourlyRate}</span>
+                  </div>
+                  <Link 
+                    to="/contact" 
+                    className={`btn ${plan.popular ? 'btn-primary' : 'btn-secondary'} pricing-cta`}
+                  >
+                    Get Started
+                  </Link>
                 </div>
-                <Link to="/contact" className="btn btn-secondary pricing-cta">
-                  Choose Plan
-                </Link>
               </animated.div>
             )
           })}
         </div>
+      </div>
+    </section>
+  )
+}
+
+function PricingTips() {
+  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
+  
+  const spring = useSpring({
+    opacity: inView ? 1 : 0,
+    transform: inView ? 'translateY(0px)' : 'translateY(30px)',
+    config: { mass: 1, tension: 80, friction: 26 }
+  })
+
+  return (
+    <section className="section tips-section" ref={ref}>
+      <div className="container">
+        <animated.div style={spring} className="tips-card">
+          <div className="tips-grid">
+            <div className="tip-item">
+              <span className="tip-icon">💡</span>
+              <p><strong>Need less up front?</strong> Go with a lower plan and pay-as-you-need.</p>
+            </div>
+            <div className="tip-item">
+              <span className="tip-icon">🎯</span>
+              <p><strong>Want full support?</strong> Choose a higher tier with fewer surprises.</p>
+            </div>
+          </div>
+        </animated.div>
       </div>
     </section>
   )
@@ -368,6 +485,7 @@ function Pricing() {
       <Hero />
       <WebsitePackages />
       <MaintenancePlans />
+      <PricingTips />
       <CustomQuote />
       <FAQ />
     </div>

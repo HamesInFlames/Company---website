@@ -54,8 +54,7 @@ function Header() {
     >
       <div className="header-container">
         <Link to="/" className="header-logo">
-          <div className="logo-icon">K</div>
-          <span className="logo-text">Kim Consultant</span>
+          <img src="/logo.png" alt="Kim Consultant" className="logo-image" />
         </Link>
 
         <nav className="header-nav">
@@ -116,4 +115,6 @@ function Header() {
 }
 
 export default Header
+
+
 

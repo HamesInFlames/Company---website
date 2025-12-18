@@ -87,17 +87,17 @@ function Hero() {
 function ServiceCategory({ category, index }) {
   const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
   
-  const spring = useSpring({
+  // Only use opacity for sticky header (transform conflicts with position:sticky)
+  const headerSpring = useSpring({
     opacity: inView ? 1 : 0,
-    transform: inView ? 'translateY(0px)' : 'translateY(40px)',
-    config: { mass: 1, tension: 80, friction: 26 }
+    config: { mass: 1, tension: 120, friction: 20 }
   })
 
   const trail = useTrail(category.services.length, {
     opacity: inView ? 1 : 0,
-    transform: inView ? 'translateX(0px)' : 'translateX(-20px)',
-    delay: 200,
-    config: { mass: 1, tension: 80, friction: 26 }
+    transform: inView ? 'translateY(0px)' : 'translateY(15px)',
+    delay: inView ? 100 : 0,
+    config: { mass: 1, tension: 140, friction: 18 }
   })
 
   const isReversed = index % 2 === 1
@@ -109,13 +109,15 @@ function ServiceCategory({ category, index }) {
       ref={ref}
     >
       <div className="container">
-        <animated.div style={spring} className="service-category">
+        <div className="service-category">
           <div className="service-category-header">
-            <div className="category-icon">
-              <Icon name={category.icon} size={36} />
-            </div>
-            <h2>{category.title}</h2>
-            <p>{category.description}</p>
+            <animated.div style={headerSpring} className="service-category-header-content">
+              <div className="category-icon">
+                <Icon name={category.icon} size={36} />
+              </div>
+              <h2>{category.title}</h2>
+              <p>{category.description}</p>
+            </animated.div>
           </div>
           <div className="service-list">
             {trail.map((style, i) => (
@@ -130,7 +132,7 @@ function ServiceCategory({ category, index }) {
               </animated.div>
             ))}
           </div>
-        </animated.div>
+        </div>
       </div>
     </section>
   )

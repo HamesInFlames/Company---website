@@ -38,6 +38,12 @@
   font-size: 1.25rem;
 }
 
+.logo-image {
+  height: 150px;
+  width: auto;
+  object-fit: contain;
+}
+
 .logo-text {
   font-weight: 600;
   font-size: 1.125rem;
