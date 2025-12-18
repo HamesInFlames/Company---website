@@ -180,3 +180,6 @@ Update the `contactInfo` array in `src/pages/Contact.jsx`.
 
 © 2024 Kim Consultant. All rights reserved.
 
+
+
+
