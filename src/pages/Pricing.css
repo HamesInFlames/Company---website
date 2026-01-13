@@ -194,10 +194,12 @@
 
 .pricing-cta {
   width: 100%;
-  padding: 0.75rem 1rem;
+  padding: 0.75rem 0.75rem;
   font-weight: 500;
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   margin-top: auto;
+  white-space: nowrap;
+  text-align: center;
 }
 
 .pricing-card.popular .pricing-cta {

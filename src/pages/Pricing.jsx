@@ -52,7 +52,7 @@ const maintenancePlans = [
   },
   {
     name: 'Advanced Maintenance',
-    price: '$150',
+    price: '$175',
     tagline: 'Priority help for active sites',
     description: 'For businesses that update often or want priority help.',
     features: [

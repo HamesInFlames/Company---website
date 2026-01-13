@@ -8,14 +8,15 @@ const contactInfo = [
   {
     icon: 'mail',
     label: 'Email',
-    value: 'hello@kimconsultant.com',
-    link: 'mailto:hello@kimconsultant.com'
+    value: 'jameskim@kimconsultant.net',
+    link: 'mailto:jameskim@kimconsultant.net'
   },
   {
-    icon: 'phone',
-    label: 'Phone',
-    value: '(416) 555-1234',
-    link: 'tel:+14165551234'
+    icon: 'whatsapp',
+    label: 'WhatsApp',
+    value: 'Message on WhatsApp',
+    link: null,
+    note: 'Business account coming soon'
   },
   {
     icon: 'mapPin',
@@ -302,6 +303,9 @@ function ContactInfo() {
                   <a href={info.link} className="method-value">{info.value}</a>
                 ) : (
                   <span className="method-value">{info.value}</span>
+                )}
+                {info.note && (
+                  <span className="method-note">{info.note}</span>
                 )}
               </div>
             </div>

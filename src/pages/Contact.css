@@ -258,6 +258,13 @@ a.method-value:hover {
   color: var(--color-accent);
 }
 
+.method-note {
+  font-size: 0.75rem;
+  color: var(--color-gray);
+  font-style: italic;
+  margin-top: 0.125rem;
+}
+
 /* Next Steps */
 .next-steps {
   display: flex;
