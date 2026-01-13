@@ -50,8 +50,8 @@ function Footer() {
             <div className="footer-links-column">
               <h4>Contact</h4>
               <nav>
-                <a href="mailto:hello@kimconsultant.com">hello@kimconsultant.com</a>
-                <a href="tel:+14165551234">(416) 555-1234</a>
+                <a href="mailto:jameskim@kimconsultant.net">jameskim@kimconsultant.net</a>
+                <span className="footer-whatsapp">WhatsApp coming soon</span>
                 <Link to="/contact">Book Consultation</Link>
               </nav>
             </div>

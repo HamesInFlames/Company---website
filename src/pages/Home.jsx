@@ -327,21 +327,25 @@ function PricingPreview() {
             <span className="section-label">Transparent Pricing</span>
             <h2>Solutions for Every Budget</h2>
             <p>
-              From starter websites to comprehensive digital systems, find a package 
-              that fits your business needs and budget.
+              Simple, transparent pricing based on the size and scope of your project — 
+              not inflated packages or hourly guessing.
             </p>
             <div className="pricing-preview-tiers">
               <div className="tier-preview">
                 <span className="tier-name">Small</span>
-                <span className="tier-price">$1,500+</span>
+                <span className="tier-price">$500</span>
               </div>
               <div className="tier-preview">
-                <span className="tier-name">Medium</span>
-                <span className="tier-price">$4,000+</span>
+                <span className="tier-name">Standard</span>
+                <span className="tier-price">$1,000</span>
+              </div>
+              <div className="tier-preview">
+                <span className="tier-name">Extended</span>
+                <span className="tier-price">$1,500</span>
               </div>
               <div className="tier-preview">
                 <span className="tier-name">Large</span>
-                <span className="tier-price">$8,000+</span>
+                <span className="tier-price">$2,000</span>
               </div>
             </div>
             <Link to="/pricing" className="btn btn-primary btn-large">
@@ -382,8 +386,8 @@ function CTA() {
             <Link to="/contact" className="btn btn-primary btn-large">
               Book Free Consultation
             </Link>
-            <a href="tel:+14165551234" className="btn btn-secondary btn-large">
-              <Icon name="phone" size={18} /> Call Now
+            <a href="mailto:jameskim@kimconsultant.net" className="btn btn-secondary btn-large">
+              <Icon name="mail" size={18} /> Email Me
             </a>
           </div>
         </div>

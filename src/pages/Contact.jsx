@@ -37,11 +37,11 @@ const projectTypes = [
 ]
 
 const budgetRanges = [
-  'Under $2,000',
-  '$2,000 - $5,000',
-  '$5,000 - $10,000',
-  '$10,000 - $20,000',
-  '$20,000+'
+  '$500 - $1,000',
+  '$1,000 - $1,500',
+  '$1,500 - $2,000',
+  '$2,000+',
+  'Not sure yet'
 ]
 
 function Hero() {
@@ -180,7 +180,7 @@ function ContactForm() {
             name="phone"
             value={formData.phone}
             onChange={handleChange}
-            placeholder="(416) 555-1234"
+            placeholder="Your phone number (optional)"
           />
         </div>
 
