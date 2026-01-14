@@ -6,59 +6,71 @@ import './Services.css'
 
 const serviceCategories = [
   {
-    id: 'web-development',
+    id: 'websites-systems',
     icon: 'globe',
-    title: 'Website Design & Development',
-    description: 'Beautiful, functional websites that represent your brand and convert visitors into customers.',
+    title: 'Websites & Business Systems',
+    description: 'Functional websites and systems that work for your business — built for clarity, flow, and everyday use.',
     services: [
-      { name: 'Modern Responsive Websites', description: 'Mobile-first designs that look stunning on every device.' },
-      { name: 'eCommerce Stores', description: 'Online stores with secure checkout and inventory management.' },
-      { name: 'Branding & UI Kits', description: 'Cohesive visual identity systems for your digital presence.' },
-      { name: 'Booking & Scheduling Systems', description: 'Appointment booking integrated directly into your site.' },
-      { name: 'Custom Component Development', description: 'Unique interactive elements built for your needs.' },
-      { name: 'Landing Pages & Funnels', description: 'High-converting pages for campaigns and promotions.' }
+      { name: 'Modern Responsive Websites', description: 'Clean, mobile-friendly sites that work on any device.' },
+      { name: 'Business-Focused Landing Pages', description: 'Simple pages that explain what you do and how to reach you.' },
+      { name: 'Booking & Inquiry Systems', description: 'Let customers schedule appointments or send inquiries directly.' },
+      { name: 'eCommerce & Ordering Setups', description: 'Online stores and ordering flows that actually make sense.' },
+      { name: 'Custom Components When Needed', description: 'Special features built only when your business genuinely requires them.' }
     ]
   },
   {
-    id: 'consulting',
-    icon: 'compass',
-    title: 'Business Consulting & Digital Strategy',
-    description: 'Strategic guidance to help you navigate the digital landscape and make informed technology decisions.',
+    id: 'operations',
+    icon: 'clipboard',
+    title: 'Operational Setup & Consulting',
+    description: 'Practical help cleaning up how your business runs — less chaos, more clarity.',
     services: [
-      { name: 'Technology Audits', description: 'Comprehensive review of your current digital infrastructure.' },
-      { name: 'Competitor Analysis', description: 'Understanding your market and identifying opportunities.' },
-      { name: 'Workflow Optimization', description: 'Streamlining processes for maximum efficiency.' },
-      { name: 'Tool Recommendations', description: 'Expert guidance on software and platform selection.' },
-      { name: 'Digital Transformation Advisory', description: 'Roadmaps for modernizing your business operations.' }
+      { name: 'Technology & Tool Audits', description: 'A clear look at what you\'re using and what\'s actually helping.' },
+      { name: 'Workflow Cleanup', description: 'Simplifying how tasks move through your business.' },
+      { name: 'Practical System Planning', description: 'Mapping out what needs to happen before jumping into tools.' },
+      { name: 'Tool Recommendations', description: 'Honest suggestions only when switching or adding makes sense.' }
     ]
   },
   {
     id: 'software',
     icon: 'code',
-    title: 'Custom Software Solutions',
-    description: 'Tailored applications and systems built specifically for your unique business requirements.',
+    title: 'Custom Software & Internal Tools',
+    description: 'When off-the-shelf tools don\'t fit, I build what you actually need — nothing more, nothing less.',
     services: [
-      { name: 'Internal Tools & Dashboards', description: 'Custom applications for your team\'s specific workflows.' },
-      { name: 'POS & Ordering Systems', description: 'Point of sale and order management solutions.' },
-      { name: 'CRM Setup & Automation', description: 'Customer relationship management configuration.' },
-      { name: 'Inventory & Logistics Systems', description: 'Stock tracking and supply chain management.' },
-      { name: 'API Integrations', description: 'Connecting your tools and platforms seamlessly.' }
+      { name: 'Internal Dashboards & Admin Tools', description: 'Simple interfaces for your team to manage day-to-day work.' },
+      { name: 'Ordering & POS-Style Systems', description: 'Custom order flows and point-of-sale setups for your operations.' },
+      { name: 'CRM Setup & Light Automation', description: 'Organize customer info and automate repetitive follow-ups.' },
+      { name: 'Inventory & Tracking Systems', description: 'Keep tabs on stock, orders, or anything else you need to track.' },
+      { name: 'API Integrations', description: 'Connect your tools so they talk to each other when it matters.' }
     ]
   },
   {
-    id: 'growth',
-    icon: 'trendingUp',
-    title: 'Growth & Optimization Services',
-    description: 'Continuous improvement strategies to help your digital presence perform at its best.',
+    id: 'support',
+    icon: 'tool',
+    title: 'Support Updates & Optimization',
+    description: 'Ongoing help to keep your website running smoothly — no fluff, just practical maintenance.',
     services: [
-      { name: 'SEO Setup', description: 'Search engine optimization to boost your visibility.' },
-      { name: 'Performance Optimization', description: 'Speed improvements for better user experience.' },
-      { name: 'Content Updates', description: 'Regular content refreshes to keep your site current.' },
-      { name: 'A/B Testing', description: 'Data-driven experiments to improve conversions.' },
-      { name: 'Analytics & Reporting', description: 'Insights and metrics to track your success.' }
+      { name: 'Website Updates & Content Changes', description: 'Text, images, and small tweaks handled without the hassle.' },
+      { name: 'Performance Improvements', description: 'Faster load times and smoother experience for your visitors.' },
+      { name: 'SEO Setup', description: 'Basic search optimization so people can find you — not an ongoing campaign.' },
+      { name: 'Analytics Setup & Reporting', description: 'See what\'s happening on your site with simple, useful data.' },
+      { name: 'Ongoing Support Plans', description: 'Monthly maintenance so you\'re not stuck figuring things out alone.' }
     ]
   }
 ]
+
+const comingSoonServices = {
+  id: 'coming-soon',
+  icon: 'zap',
+  title: 'Coming Soon: Social Media & Client Lead Systems',
+  description: 'This is being developed carefully and will launch when ready. Not a promise — a preview of what\'s next.',
+  services: [
+    { name: 'Social Media Coordination', description: 'Helping align your website and social presence — not daily posting or content farming.' },
+    { name: 'Website & Social Alignment', description: 'Making sure your online presence feels consistent across platforms.' },
+    { name: 'Simple Lead Capture Systems', description: 'Forms, inbox routing, and basic automation to organize incoming inquiries.' },
+    { name: 'Inquiry Routing & Organization', description: 'Structure for handling leads so nothing falls through the cracks.' }
+  ],
+  note: 'This is not full-service social media management, ad buying, or guaranteed lead generation. It\'s about building structure — not making promises.'
+}
 
 function Hero() {
   const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
@@ -73,11 +85,11 @@ function Hero() {
     <section className="services-hero" ref={ref}>
       <div className="services-hero-bg"></div>
       <animated.div style={spring} className="container">
-        <span className="section-label">Our Services</span>
-        <h1>Comprehensive Digital Solutions</h1>
+        <span className="section-label">Services</span>
+        <h1>Systems That Reduce the Chaos</h1>
         <p className="services-hero-subtitle">
-          From websites to custom software, we provide everything your business needs 
-          to thrive in the digital age.
+          I build websites, tools, and systems that help small businesses run smoother — 
+          not flashy marketing or abstract strategy. Just practical structure that works.
         </p>
       </animated.div>
     </section>
@@ -155,6 +167,52 @@ function QuickNav() {
   )
 }
 
+function ComingSoonSection() {
+  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
+  
+  const spring = useSpring({
+    opacity: inView ? 1 : 0,
+    transform: inView ? 'translateY(0px)' : 'translateY(30px)',
+    config: { mass: 1, tension: 80, friction: 26 }
+  })
+
+  const trail = useTrail(comingSoonServices.services.length, {
+    opacity: inView ? 1 : 0,
+    transform: inView ? 'translateY(0px)' : 'translateY(15px)',
+    delay: inView ? 200 : 0,
+    config: { mass: 1, tension: 140, friction: 18 }
+  })
+
+  return (
+    <section className="section coming-soon-section" id={comingSoonServices.id} ref={ref}>
+      <div className="container">
+        <animated.div style={spring} className="coming-soon-card">
+          <div className="coming-soon-header">
+            <span className="coming-soon-badge">Coming Soon</span>
+            <div className="category-icon">
+              <Icon name={comingSoonServices.icon} size={32} />
+            </div>
+            <h2>{comingSoonServices.title.replace('Coming Soon: ', '')}</h2>
+            <p className="coming-soon-desc">{comingSoonServices.description}</p>
+          </div>
+          <div className="coming-soon-services">
+            {trail.map((style, i) => (
+              <animated.div key={comingSoonServices.services[i].name} style={style} className="coming-soon-item">
+                <Icon name="clock" size={16} />
+                <div>
+                  <h4>{comingSoonServices.services[i].name}</h4>
+                  <p>{comingSoonServices.services[i].description}</p>
+                </div>
+              </animated.div>
+            ))}
+          </div>
+          <p className="coming-soon-note">{comingSoonServices.note}</p>
+        </animated.div>
+      </div>
+    </section>
+  )
+}
+
 function CTA() {
   const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
   
@@ -169,15 +227,15 @@ function CTA() {
       <animated.div style={spring} className="container">
         <div className="services-cta-card">
           <div className="cta-content">
-            <h2>Not Sure Which Service You Need?</h2>
+            <h2>Not Sure Where to Start?</h2>
             <p>
-              Book a free consultation and we'll help you identify the best solutions 
-              for your business goals.
+              Let's have a conversation about what's not working and figure out 
+              if I can help. No pressure, no sales pitch.
             </p>
           </div>
           <div className="cta-actions">
             <Link to="/contact" className="btn btn-primary btn-large">
-              Book Free Consultation
+              Book a Free Consultation
             </Link>
             <Link to="/pricing" className="btn btn-secondary btn-large">
               View Pricing
@@ -197,6 +255,7 @@ function Services() {
       {serviceCategories.map((category, index) => (
         <ServiceCategory key={category.id} category={category} index={index} />
       ))}
+      <ComingSoonSection />
       <CTA />
     </div>
   )
