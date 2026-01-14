@@ -28,11 +28,11 @@ const contactInfo = [
 const projectTypes = [
   'New Website',
   'Website Redesign',
-  'eCommerce Store',
-  'Custom Software',
-  'Digital Strategy',
-  'Maintenance Plan',
-  'Other'
+  'eCommerce or Ordering System',
+  'Custom Software or Internal Tools',
+  'Operational Setup & Consulting',
+  'Maintenance & Support',
+  'Not Sure Yet'
 ]
 
 const budgetRanges = [
@@ -57,10 +57,10 @@ function Hero() {
       <div className="contact-hero-bg"></div>
       <animated.div style={spring} className="container">
         <span className="section-label">Contact</span>
-        <h1>Let's Build Something Great</h1>
+        <h1>Let's Talk About What You Need</h1>
         <p className="contact-hero-subtitle">
-          Ready to transform your digital presence? Book a free consultation 
-          and let's discuss your project.
+          Not sure where to start? Book a free consultation and we'll figure out 
+          what actually makes sense for your business.
         </p>
       </animated.div>
     </section>
@@ -349,7 +349,7 @@ function ContactInfo() {
             <div className="step-number">3</div>
             <div className="step-content">
               <h4>Kick Off</h4>
-              <p>Once approved, we begin building your digital solution.</p>
+              <p>Once we agree on scope and cost, we start building.</p>
             </div>
           </div>
         </div>

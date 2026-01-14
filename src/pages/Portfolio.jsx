@@ -101,10 +101,10 @@ function Hero() {
       <div className="portfolio-hero-bg"></div>
       <animated.div style={spring} className="container">
         <span className="section-label">Portfolio</span>
-        <h1>Our Work</h1>
+        <h1>Recent Work</h1>
         <p className="portfolio-hero-subtitle">
-          Client projects and concept designs showcasing our capabilities and the quality 
-          you can expect when working with us.
+          Real client projects alongside concept designs — examples of the kind of 
+          websites and systems we build.
         </p>
       </animated.div>
     </section>
@@ -305,14 +305,14 @@ function CTA() {
     <section className="section portfolio-cta-section" ref={ref}>
       <animated.div style={spring} className="container">
         <div className="portfolio-cta-card">
-          <h2>Ready to Start Your Project?</h2>
+          <h2>Need Something Similar?</h2>
           <p>
-            Let's create something amazing together. Book a free consultation to discuss 
-            your website or digital project.
+            Let's talk about what you need. Book a free consultation to discuss 
+            your website or system project.
           </p>
           <div className="cta-actions">
             <Link to="/contact" className="btn btn-primary btn-large">
-              Get Started
+              Get in Touch
             </Link>
             <Link to="/pricing" className="btn btn-secondary btn-large">
               View Pricing

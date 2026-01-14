@@ -7,23 +7,23 @@ import './About.css'
 const values = [
   {
     icon: 'target',
-    title: 'Results-Driven',
-    description: 'Every solution is designed with measurable outcomes in mind. Your success is our success.'
+    title: 'Practical First',
+    description: "We focus on what actually helps your business run better — not flashy extras you won't use."
   },
   {
     icon: 'users',
-    title: 'Client-Focused',
-    description: 'We listen first, then build. Your vision and needs guide every decision we make.'
+    title: 'Direct Communication',
+    description: 'You work with the person building your project. No layers, no handoffs, no confusion.'
   },
   {
     icon: 'shield',
-    title: 'Transparency',
-    description: 'Clear communication, honest pricing, and no hidden surprises. You always know where we stand.'
+    title: 'Honest Pricing',
+    description: 'Clear costs upfront. No surprises, no hidden fees, no inflated packages.'
   },
   {
-    icon: 'zap',
-    title: 'Innovation',
-    description: 'Staying ahead of technology trends to bring you the most effective, modern solutions.'
+    icon: 'clipboard',
+    title: 'Systems Mindset',
+    description: 'We think about how tools connect and how work flows — not just individual pieces.'
   }
 ]
 
@@ -41,10 +41,10 @@ function Hero() {
       <div className="about-hero-bg"></div>
       <animated.div style={spring} className="container">
         <span className="section-label">About Kim Consultant</span>
-        <h1>A Fresh Approach to Digital for Local Businesses</h1>
+        <h1>Systems-Focused Help for Local Businesses</h1>
         <p className="about-hero-subtitle">
-          We're a new Toronto-based consultancy passionate about helping local businesses 
-          build beautiful, effective digital experiences that drive real results.
+          We're a small Toronto-based consultancy helping local businesses build websites 
+          and systems that reduce chaos and make day-to-day operations simpler.
         </p>
       </animated.div>
     </section>
@@ -72,24 +72,23 @@ function Story() {
       <div className="container">
         <div className="story-grid">
           <animated.div style={leftSpring} className="story-content">
-            <span className="section-label">Our Story</span>
+            <span className="section-label">Why We Exist</span>
             <h2>Just Getting Started</h2>
             <p>
-              Kim Consultant was born from a simple observation: too many amazing local 
-              businesses are held back by outdated or non-existent digital presences. 
-              We're here to change that.
+              Kim Consultant started because we saw a pattern: small business owners 
+              juggling too many tools, doing everything manually, and being the system 
+              that holds it all together. That's exhausting.
             </p>
             <p>
-              We recently launched with a focus on what we do best—creating stunning, 
-              functional websites and digital solutions for Toronto's local businesses. 
-              Our first clients, Grodzinski Bakery and Lumière Pâtisserie, trusted us 
-              with their digital transformation, and we're proud of the results.
+              We launched to help with the practical stuff — building websites that 
+              work, setting up systems that connect, and cleaning up the messy workflows 
+              that slow businesses down. Our first clients, Grodzinski Bakery and 
+              Lumière Pâtisserie, trusted us to help, and we delivered.
             </p>
             <p>
-              We may be new, but we bring fresh perspectives, modern techniques, and 
-              genuine passion to every project. We're not trying to be everything to 
-              everyone—we're focused on being the best partner for local businesses 
-              ready to level up their digital game.
+              We're new and small, which means you get direct communication and 
+              honest pricing — not layers of account managers or inflated agency fees. 
+              We're here to help local businesses run smoother, not to sell big promises.
             </p>
           </animated.div>
           <animated.div style={rightSpring} className="story-image">
@@ -129,13 +128,13 @@ function Mission() {
     <section className="section mission-section" ref={ref}>
       <animated.div style={spring} className="container container-narrow">
         <div className="mission-card">
-          <span className="section-label">Our Mission</span>
-          <h2>"To give Toronto's local businesses the same quality digital presence 
-          that big brands enjoy—at prices that make sense."</h2>
+          <span className="section-label">What We Believe</span>
+          <h2>"Small businesses deserve practical websites and systems that work — 
+          without the agency price tag or corporate complexity."</h2>
           <p>
-            We believe stunning websites and smart digital tools shouldn't be reserved 
-            for corporations with massive budgets. Every local bakery, café, and shop 
-            deserves to shine online.
+            You shouldn't need a big budget or a technical background to have a 
+            website that works and tools that connect properly. We keep it simple 
+            and affordable because that's what local businesses actually need.
           </p>
         </div>
       </animated.div>
@@ -193,28 +192,27 @@ function Approach() {
         <animated.div style={spring} className="approach-content">
           <div className="approach-text">
             <span className="section-label">Our Approach</span>
-            <h2>Small Team, Big Dedication</h2>
+            <h2>Small Team, Direct Communication</h2>
             <p>
-              Being a new consultancy means you get our full attention. No passing you off 
-              to junior staff or automated systems—when you work with us, you work directly 
-              with the people building your project.
+              Being a small consultancy means you work directly with the person building 
+              your project. No account managers, no handoffs, no waiting for answers.
             </p>
             <ul className="approach-list">
               <li>
                 <Icon name="checkCircle" size={20} />
-                <span>Direct communication with your project lead</span>
+                <span>You talk to the person doing the work</span>
               </li>
               <li>
                 <Icon name="checkCircle" size={20} />
-                <span>Flexible timelines that work for your business</span>
+                <span>Flexible timelines that work for your schedule</span>
               </li>
               <li>
                 <Icon name="checkCircle" size={20} />
-                <span>Honest pricing with no hidden fees</span>
+                <span>Transparent pricing — you know exactly what you're paying for</span>
               </li>
               <li>
                 <Icon name="checkCircle" size={20} />
-                <span>We're invested in your success—your growth is our growth</span>
+                <span>No long-term contracts or forced commitments</span>
               </li>
             </ul>
           </div>

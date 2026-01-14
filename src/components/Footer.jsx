@@ -13,7 +13,7 @@ function Footer() {
               <img src="/logo.png" alt="Kim Consultant" className="footer-logo-image" />
             </Link>
             <p className="footer-tagline">
-              Building digital solutions for Toronto's local businesses.
+              Practical websites and systems for Toronto's small businesses.
             </p>
             <div className="footer-location">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -40,10 +40,10 @@ function Footer() {
             <div className="footer-links-column">
               <h4>Services</h4>
               <nav>
-                <Link to="/services">Web Development</Link>
-                <Link to="/services">Custom Software</Link>
-                <Link to="/services">Digital Strategy</Link>
-                <Link to="/services">SEO & Growth</Link>
+                <Link to="/services#websites-systems">Websites & Systems</Link>
+                <Link to="/services#software">Custom Software & Tools</Link>
+                <Link to="/services#operations">Operational Consulting</Link>
+                <Link to="/services#support">Support & Maintenance</Link>
               </nav>
             </div>
 

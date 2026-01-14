@@ -58,16 +58,16 @@ const demoProjects = [
 ]
 
 const services = [
-  { icon: 'globe', title: 'Web Development', description: 'Modern, responsive websites that convert visitors into customers.' },
-  { icon: 'code', title: 'Custom Software', description: 'Tailored applications and tools built for your specific needs.' },
-  { icon: 'compass', title: 'Digital Strategy', description: 'Technology audits and roadmaps to grow your business.' }
+  { icon: 'globe', title: 'Websites & Business Systems', description: 'Clean, functional websites built for clarity and everyday use.' },
+  { icon: 'code', title: 'Custom Software & Tools', description: 'Internal tools and systems built for your specific workflows.' },
+  { icon: 'clipboard', title: 'Operational Setup & Consulting', description: 'Practical help cleaning up how your business runs day-to-day.' }
 ]
 
 const processSteps = [
-  { number: '01', title: 'Discover', description: 'Understanding your business, goals, and digital needs through consultation.' },
-  { number: '02', title: 'Plan', description: 'Creating a strategic roadmap with timelines, deliverables, and milestones.' },
-  { number: '03', title: 'Build', description: 'Developing your solution with regular updates and collaborative feedback.' },
-  { number: '04', title: 'Support', description: 'Ongoing maintenance, optimization, and growth partnership.' }
+  { number: '01', title: 'Understand', description: "We talk through what's working, what's not, and what you actually need." },
+  { number: '02', title: 'Plan', description: 'We scope out the work clearly — no vague promises, just practical next steps.' },
+  { number: '03', title: 'Build', description: 'We build your site or system with regular check-ins and honest feedback.' },
+  { number: '04', title: 'Support', description: "Once it's live, we're here to help maintain and update as needed." }
 ]
 
 const clientTypes = [
@@ -111,15 +111,15 @@ function Hero() {
       </div>
       <div className="hero-content">
         <animated.div style={titleSpring}>
-          <span className="hero-label">Toronto Tech Consultancy</span>
+          <span className="hero-label">For Toronto's Small Businesses</span>
           <h1 className="hero-title">
-            Websites. Software.<br />
-            <span className="text-gradient">Digital Strategy.</span>
+            Websites & Systems<br />
+            <span className="text-gradient">That Actually Work.</span>
           </h1>
         </animated.div>
         <animated.p className="hero-subtitle" style={subtitleSpring}>
-          Helping local businesses identify digital needs, create powerful solutions, 
-          and grow through technology.
+          We build practical websites and tools that make your business easier to run — 
+          less chaos, more clarity, fewer things falling through the cracks.
         </animated.p>
         <animated.div className="hero-cta" style={ctaSpring}>
           <Link to="/contact" className="btn btn-primary btn-large">
@@ -152,9 +152,9 @@ function Services() {
       <div className="container">
         <div className="section-header">
           <span className="section-label">What I Do</span>
-          <h2 className="section-title">Building Digital Excellence</h2>
+          <h2 className="section-title">Practical Systems for Real Businesses</h2>
           <p className="section-subtitle">
-            Comprehensive technology solutions tailored for Toronto's small and medium businesses.
+            Websites, tools, and operational help for Toronto's cafés, bakeries, salons, contractors, and local shops.
           </p>
         </div>
         <div className="services-grid">
@@ -254,9 +254,9 @@ function Process() {
       <div className="container">
         <div className="section-header">
           <span className="section-label">How I Work</span>
-          <h2 className="section-title">A Clear Path to Success</h2>
+          <h2 className="section-title">A Simple, Honest Process</h2>
           <p className="section-subtitle">
-            A proven process that ensures transparency, collaboration, and outstanding results.
+            No complicated timelines or endless meetings. Just clear steps from start to finish.
           </p>
         </div>
         <div className="process-timeline">
@@ -378,9 +378,9 @@ function CTA() {
     <section className="section cta-section" ref={ref}>
       <animated.div style={spring} className="container">
         <div className="cta-card">
-          <h2>Ready to Transform Your Business?</h2>
+          <h2>Not Sure Where to Start?</h2>
           <p>
-            Let's discuss your digital goals and create a solution that drives real results.
+            Have a conversation about what is not working and figure out if I can help.
           </p>
           <div className="cta-actions">
             <Link to="/contact" className="btn btn-primary btn-large">
