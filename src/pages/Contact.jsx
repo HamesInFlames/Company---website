@@ -98,11 +98,27 @@ function ContactForm() {
     e.preventDefault()
     setIsSubmitting(true)
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500))
-    
-    setIsSubmitting(false)
-    setSubmitted(true)
+    try {
+      const response = await fetch(
+        'https://script.google.com/a/macros/kimconsultant.net/s/AKfycbw0S3bYRfqghPxZyovjLTLRMyF8QPUCxmvhYYhEdMI7dzZglnBjZg4xK_LteSL8ijmd/exec',
+        {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData)
+        }
+      )
+      
+      // With no-cors mode, we can't read the response, but the request goes through
+      setSubmitted(true)
+    } catch (error) {
+      console.error('Form submission error:', error)
+      alert('There was an error sending your message. Please try again or email us directly.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   if (submitted) {
