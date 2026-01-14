@@ -85,6 +85,10 @@
   color: var(--color-white);
 }
 
+.footer-links-column a {
+  white-space: nowrap;
+}
+
 .footer-whatsapp {
   font-size: 0.9375rem;
   color: var(--color-gray);
