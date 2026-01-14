@@ -100,7 +100,7 @@ function ContactForm() {
     
     try {
       const response = await fetch(
-        'https://script.google.com/a/macros/kimconsultant.net/s/AKfycbw0S3bYRfqghPxZyovjLTLRMyF8QPUCxmvhYYhEdMI7dzZglnBjZg4xK_LteSL8ijmd/exec',
+        'https://script.google.com/macros/s/AKfycbw0S3bYRfqghPxZyovjLTLRMyF8QPUCxmvhYYhEdMI7dzZglnBjZg4xK_LteSL8ijmd/exec',
         {
           method: 'POST',
           mode: 'no-cors',
