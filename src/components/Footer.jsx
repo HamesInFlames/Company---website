@@ -51,7 +51,7 @@ function Footer() {
               <h4>Contact</h4>
               <nav>
                 <a href="mailto:jameskim@kimconsultant.net">jameskim@kimconsultant.net</a>
-                <span className="footer-whatsapp">WhatsApp coming soon</span>
+                <a href="https://wa.me/12898947288?text=Hi%2C%20I%27m%20interested%20in%20your%20web%20development%20services." target="_blank" rel="noopener noreferrer">WhatsApp: +1 (289) 894-7288</a>
                 <Link to="/contact">Book Consultation</Link>
               </nav>
             </div>

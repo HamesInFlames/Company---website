@@ -14,9 +14,8 @@ const contactInfo = [
   {
     icon: 'whatsapp',
     label: 'WhatsApp',
-    value: 'Message on WhatsApp',
-    link: null,
-    note: 'Business account coming soon'
+    value: '+1 (289) 894-7288',
+    link: 'https://wa.me/12898947288?text=Hi%2C%20I%27m%20interested%20in%20your%20web%20development%20services.'
   },
   {
     icon: 'mapPin',
