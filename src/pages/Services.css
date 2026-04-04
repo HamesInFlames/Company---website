@@ -38,7 +38,7 @@
   line-height: 1.7;
 }
 
-/* Quick Navigation — sticky pills */
+/* Quick Navigation — sticky underline tabs */
 .services-nav {
   position: sticky;
   top: var(--header-height);
@@ -47,17 +47,16 @@
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--color-card-border);
-  padding: var(--space-sm) 0;
-  height: 56px;
+  padding: 0;
   display: flex;
-  align-items: center;
+  align-items: stretch;
 }
 
 .services-nav-inner {
   display: flex;
-  gap: 0.5rem;
+  gap: 0;
+  justify-content: center;
   overflow-x: auto;
-  padding-bottom: var(--space-xs);
   scrollbar-width: none;
 }
 
@@ -68,22 +67,31 @@
 .nav-chip {
   display: flex;
   align-items: center;
-  gap: var(--space-xs);
-  padding: 0.5rem 1rem;
-  background: var(--color-card);
-  border: 1px solid var(--color-card-border);
-  border-radius: var(--radius-full);
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
   font-size: 0.8125rem;
-  color: var(--color-light-gray);
+  color: var(--color-gray);
   white-space: nowrap;
   transition: all var(--transition-fast);
   font-weight: 500;
+  letter-spacing: 0.02em;
+  position: relative;
 }
 
 .nav-chip:hover {
-  background: var(--color-card-hover);
-  border-color: var(--color-card-border-hover);
   color: var(--color-white);
+  background: none;
+  border-bottom-color: rgba(255, 255, 255, 0.2);
+}
+
+.nav-chip:active,
+.nav-chip.active {
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
 }
 
 /* Service Category Sections */
@@ -251,13 +259,13 @@
   }
 
   .services-nav {
-    padding: var(--space-xs) 0;
-    height: 52px;
+    padding: 0;
   }
 
   .nav-chip {
-    padding: 0.625rem 1rem;
+    padding: 0.75rem 1rem;
     min-height: 44px;
+    font-size: 0.75rem;
   }
 
   .services-cta-card {

@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
-import { useSpring, animated, useTrail } from '@react-spring/web'
-import { useInView } from 'react-intersection-observer'
+import { motion } from 'motion/react'
 import Icon from '../components/Icon'
 import './Services.css'
 
@@ -58,78 +57,87 @@ const serviceCategories = [
   }
 ]
 
+const staggerContainer = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.08, delayChildren: 0.1 }
+  }
+}
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 15 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { type: 'spring', stiffness: 140, damping: 18 }
+  }
+}
 
 function Hero() {
-  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
-  
-  const spring = useSpring({
-    opacity: inView ? 1 : 0,
-    transform: inView ? 'translateY(0px)' : 'translateY(40px)',
-    config: { mass: 1, tension: 80, friction: 26 }
-  })
-
   return (
-    <section className="services-hero" ref={ref}>
+    <section className="services-hero">
       <div className="services-hero-bg"></div>
-      <animated.div style={spring} className="container">
+      <motion.div
+        className="container"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.1 }}
+        transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
+      >
         <span className="section-label">Services</span>
         <h1>Systems That Reduce the Chaos</h1>
         <p className="services-hero-subtitle">
           We build websites, applications, and digital systems that help small businesses run smoother. Every project includes professional photography and transparent, usage-based pricing.
         </p>
-      </animated.div>
+      </motion.div>
     </section>
   )
 }
 
 function ServiceCategory({ category, index }) {
-  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
-  
-  // Only use opacity for sticky header (transform conflicts with position:sticky)
-  const headerSpring = useSpring({
-    opacity: inView ? 1 : 0,
-    config: { mass: 1, tension: 120, friction: 20 }
-  })
-
-  const trail = useTrail(category.services.length, {
-    opacity: inView ? 1 : 0,
-    transform: inView ? 'translateY(0px)' : 'translateY(15px)',
-    delay: inView ? 100 : 0,
-    config: { mass: 1, tension: 140, friction: 18 }
-  })
-
   const isReversed = index % 2 === 1
 
   return (
     <section 
       className={`section service-category-section ${isReversed ? 'reversed' : ''}`} 
       id={category.id}
-      ref={ref}
     >
       <div className="container">
         <div className="service-category">
           <div className="service-category-header">
-            <animated.div style={headerSpring} className="service-category-header-content">
+            <motion.div
+              className="service-category-header-content"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.5 }}
+            >
               <div className="category-icon">
                 <Icon name={category.icon} size={36} />
               </div>
               <h2>{category.title}</h2>
               <p>{category.description}</p>
-            </animated.div>
+            </motion.div>
           </div>
-          <div className="service-list">
-            {trail.map((style, i) => (
-              <animated.div key={category.services[i].name} style={style} className="service-item">
+          <motion.div
+            className="service-list"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+          >
+            {category.services.map((service) => (
+              <motion.div key={service.name} variants={fadeUp} className="service-item">
                 <div className="service-item-indicator">
                   <Icon name="check" size={16} />
                 </div>
                 <div className="service-item-content">
-                  <h4>{category.services[i].name}</h4>
-                  <p>{category.services[i].description}</p>
+                  <h4>{service.name}</h4>
+                  <p>{service.description}</p>
                 </div>
-              </animated.div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
@@ -155,17 +163,15 @@ function QuickNav() {
 
 
 function CTA() {
-  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
-  
-  const spring = useSpring({
-    opacity: inView ? 1 : 0,
-    transform: inView ? 'scale(1)' : 'scale(0.98)',
-    config: { mass: 1, tension: 80, friction: 26 }
-  })
-
   return (
-    <section className="section services-cta-section" ref={ref}>
-      <animated.div style={spring} className="container">
+    <section className="section services-cta-section">
+      <motion.div
+        className="container"
+        initial={{ opacity: 0, scale: 0.98 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true, amount: 0.1 }}
+        transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
+      >
         <div className="services-cta-card">
           <div className="cta-content">
             <h2>Not Sure Where to Start?</h2>
@@ -183,7 +189,7 @@ function CTA() {
             </Link>
           </div>
         </div>
-      </animated.div>
+      </motion.div>
     </section>
   )
 }
@@ -202,7 +208,3 @@ function Services() {
 }
 
 export default Services
-
-
-
-

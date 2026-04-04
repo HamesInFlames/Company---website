@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useSpring, animated, useTrail } from '@react-spring/web'
-import { useInView } from 'react-intersection-observer'
+import { motion, AnimatePresence } from 'motion/react'
 import Icon from '../components/Icon'
 import './Pricing.css'
 
@@ -102,103 +101,109 @@ const faqs = [
   }
 ]
 
+const staggerContainer = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.08, delayChildren: 0.15 }
+  }
+}
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { type: 'spring', stiffness: 120, damping: 26 }
+  }
+}
+
 function Hero() {
-  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
-
-  const spring = useSpring({
-    opacity: inView ? 1 : 0,
-    transform: inView ? 'translateY(0px)' : 'translateY(24px)',
-    config: { mass: 1, tension: 120, friction: 26 }
-  })
-
   return (
-    <section className="pricing-hero" ref={ref}>
+    <section className="pricing-hero">
       <div className="pricing-hero-bg"></div>
-      <animated.div style={spring} className="container">
+      <motion.div
+        className="container"
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.1 }}
+        transition={{ type: 'spring', stiffness: 120, damping: 26 }}
+      >
         <span className="section-label">Pricing</span>
         <h1>Website Pricing</h1>
         <p className="pricing-hero-subtitle">
           Simple, transparent pricing based on scope — not inflated packages. Every project includes professional photography and deployment.
         </p>
-      </animated.div>
+      </motion.div>
     </section>
   )
 }
 
 function WebsiteBuildTiers() {
-  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
-
-  const headerSpring = useSpring({
-    opacity: inView ? 1 : 0,
-    transform: inView ? 'translateY(0px)' : 'translateY(24px)',
-    config: { mass: 1, tension: 120, friction: 26 }
-  })
-
-  const trail = useTrail(websiteBuildTiers.length, {
-    opacity: inView ? 1 : 0,
-    transform: inView ? 'translateY(0px)' : 'translateY(24px)',
-    delay: 150,
-    config: { mass: 1, tension: 120, friction: 26 }
-  })
-
   return (
-    <section className="section packages-section" ref={ref}>
+    <section className="section packages-section">
       <div className="container container-wide">
-        <animated.div style={headerSpring} className="section-header">
+        <motion.div
+          className="section-header"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ type: 'spring', stiffness: 120, damping: 26 }}
+        >
           <span className="section-label">Website Build Tiers</span>
           <h2>One-Time Build Cost</h2>
           <p className="section-subtitle">
             Pay once for your website. No hidden fees. No surprises.
           </p>
-        </animated.div>
-        <div className="pricing-grid pricing-grid-4">
-          {trail.map((style, index) => {
-            const tier = websiteBuildTiers[index]
-            return (
-              <animated.div
-                key={tier.name}
-                style={style}
-                className={`pricing-card build-card ${tier.popular ? 'popular' : ''} ${tier.isCustom ? 'custom-tier' : ''}`}
+        </motion.div>
+        <motion.div
+          className="pricing-grid pricing-grid-4"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+        >
+          {websiteBuildTiers.map((tier) => (
+            <motion.div
+              key={tier.name}
+              variants={fadeUp}
+              className={`pricing-card build-card ${tier.popular ? 'popular' : ''} ${tier.isCustom ? 'custom-tier' : ''}`}
+            >
+              {tier.popular && <span className="popular-badge">Most Popular</span>}
+              <div className="pricing-card-top">
+                <h3>{tier.name}</h3>
+                <div className="pricing-amount">
+                  <span className="price">{tier.price}</span>
+                </div>
+              </div>
+              <div className="tier-description">
+                <p className="tier-main-desc">{tier.description}</p>
+                <p className="tier-ideal-for">{tier.idealFor}</p>
+              </div>
+              <Link
+                to="/contact"
+                className={`btn ${tier.popular ? 'btn-primary' : 'btn-secondary'} pricing-cta`}
               >
-                {tier.popular && <span className="popular-badge">Most Popular</span>}
-                <div className="pricing-card-top">
-                  <h3>{tier.name}</h3>
-                  <div className="pricing-amount">
-                    <span className="price">{tier.price}</span>
-                  </div>
-                </div>
-                <div className="tier-description">
-                  <p className="tier-main-desc">{tier.description}</p>
-                  <p className="tier-ideal-for">{tier.idealFor}</p>
-                </div>
-                <Link
-                  to="/contact"
-                  className={`btn ${tier.popular ? 'btn-primary' : 'btn-secondary'} pricing-cta`}
-                >
-                  Get Started
-                </Link>
-              </animated.div>
-            )
-          })}
-        </div>
+                Get Started
+              </Link>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </section>
   )
 }
 
 function OperatingFees() {
-  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
-
-  const spring = useSpring({
-    opacity: inView ? 1 : 0,
-    transform: inView ? 'translateY(0px)' : 'translateY(24px)',
-    config: { mass: 1, tension: 120, friction: 26 }
-  })
-
   return (
-    <section className="section operating-fees-section" ref={ref}>
+    <section className="section operating-fees-section">
       <div className="container">
-        <animated.div style={spring} className="operating-fees-card">
+        <motion.div
+          className="operating-fees-card"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ type: 'spring', stiffness: 120, damping: 26 }}
+        >
           <div className="operating-fees-header">
             <span className="section-label">Important</span>
             <h2>Operating & Platform Fees</h2>
@@ -260,94 +265,85 @@ function OperatingFees() {
               I'll always be transparent about these costs before anything goes live.
             </p>
           </div>
-        </animated.div>
+        </motion.div>
       </div>
     </section>
   )
 }
 
 function MaintenancePlans() {
-  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
-
-  const headerSpring = useSpring({
-    opacity: inView ? 1 : 0,
-    transform: inView ? 'translateY(0px)' : 'translateY(24px)',
-    config: { mass: 1, tension: 120, friction: 26 }
-  })
-
-  const trail = useTrail(maintenancePlans.length, {
-    opacity: inView ? 1 : 0,
-    transform: inView ? 'translateY(0px)' : 'translateY(24px)',
-    delay: 150,
-    config: { mass: 1, tension: 120, friction: 26 }
-  })
-
   return (
-    <section className="section maintenance-section" ref={ref}>
+    <section className="section maintenance-section">
       <div className="container">
-        <animated.div style={headerSpring} className="section-header">
+        <motion.div
+          className="section-header"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ type: 'spring', stiffness: 120, damping: 26 }}
+        >
           <span className="section-label">Optional Maintenance & Support</span>
           <h2>Monthly Support Plans</h2>
           <p className="section-subtitle">
             Maintenance is optional, but recommended if you want help keeping things updated without stress.
           </p>
-        </animated.div>
-        <div className="pricing-grid pricing-grid-2">
-          {trail.map((style, index) => {
-            const plan = maintenancePlans[index]
-            return (
-              <animated.div
-                key={plan.name}
-                style={style}
-                className={`pricing-card maintenance-card ${plan.popular ? 'popular' : ''}`}
-              >
-                {plan.popular && <span className="popular-badge">Recommended</span>}
-                <div className="pricing-card-top">
-                  <h3 className="plan-name">{plan.name}</h3>
-                  <p className="plan-tagline">{plan.tagline}</p>
-                  <div className="pricing-amount">
-                    <span className="price">{plan.price}</span>
-                    <span className="price-suffix">/ month</span>
-                  </div>
+        </motion.div>
+        <motion.div
+          className="pricing-grid pricing-grid-2"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+        >
+          {maintenancePlans.map((plan) => (
+            <motion.div
+              key={plan.name}
+              variants={fadeUp}
+              className={`pricing-card maintenance-card ${plan.popular ? 'popular' : ''}`}
+            >
+              {plan.popular && <span className="popular-badge">Recommended</span>}
+              <div className="pricing-card-top">
+                <h3 className="plan-name">{plan.name}</h3>
+                <p className="plan-tagline">{plan.tagline}</p>
+                <div className="pricing-amount">
+                  <span className="price">{plan.price}</span>
+                  <span className="price-suffix">/ month</span>
                 </div>
-                <p className="plan-description">{plan.description}</p>
-                <div className="includes-label">Includes:</div>
-                <ul className="pricing-features">
-                  {plan.features.map((feature, i) => (
-                    <li key={i}>
-                      <Icon name="check" size={16} />
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  to="/contact"
-                  className={`btn ${plan.popular ? 'btn-primary' : 'btn-secondary'} pricing-cta`}
-                >
-                  Get Started
-                </Link>
-              </animated.div>
-            )
-          })}
-        </div>
+              </div>
+              <p className="plan-description">{plan.description}</p>
+              <div className="includes-label">Includes:</div>
+              <ul className="pricing-features">
+                {plan.features.map((feature, i) => (
+                  <li key={i}>
+                    <Icon name="check" size={16} />
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+              <Link
+                to="/contact"
+                className={`btn ${plan.popular ? 'btn-primary' : 'btn-secondary'} pricing-cta`}
+              >
+                Get Started
+              </Link>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </section>
   )
 }
 
 function ValueComparison() {
-  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
-
-  const spring = useSpring({
-    opacity: inView ? 1 : 0,
-    transform: inView ? 'translateY(0px)' : 'translateY(24px)',
-    config: { mass: 1, tension: 120, friction: 26 }
-  })
-
   return (
-    <section className="section value-comparison-section" ref={ref}>
+    <section className="section value-comparison-section">
       <div className="container">
-        <animated.div style={spring}>
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ type: 'spring', stiffness: 120, damping: 26 }}
+        >
           <div className="section-header">
             <span className="section-label">Value Comparison</span>
             <h2>What You Get vs. Market Rates</h2>
@@ -381,21 +377,13 @@ function ValueComparison() {
               </div>
             </div>
           </div>
-        </animated.div>
+        </motion.div>
       </div>
     </section>
   )
 }
 
 function FairPricing() {
-  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
-
-  const spring = useSpring({
-    opacity: inView ? 1 : 0,
-    transform: inView ? 'translateY(0px)' : 'translateY(24px)',
-    config: { mass: 1, tension: 120, friction: 26 }
-  })
-
   const benefits = [
     { text: 'You only pay for the size and complexity you actually need' },
     { text: 'No forced upgrades' },
@@ -404,9 +392,15 @@ function FairPricing() {
   ]
 
   return (
-    <section className="section fair-pricing-section" ref={ref}>
+    <section className="section fair-pricing-section">
       <div className="container">
-        <animated.div style={spring} className="fair-pricing-card">
+        <motion.div
+          className="fair-pricing-card"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ type: 'spring', stiffness: 120, damping: 26 }}
+        >
           <div className="fair-pricing-content">
             <span className="section-label">Philosophy</span>
             <h2>How This Keeps Things Fair</h2>
@@ -422,46 +416,49 @@ function FairPricing() {
               If you want something simple, we keep it simple — and affordable.
             </p>
           </div>
-        </animated.div>
+        </motion.div>
       </div>
     </section>
   )
 }
 
 function FAQItem({ faq, isOpen, onClick }) {
-  const contentSpring = useSpring({
-    maxHeight: isOpen ? 500 : 0,
-    opacity: isOpen ? 1 : 0,
-    config: { mass: 1, tension: 200, friction: 26 }
-  })
-
   return (
     <div className={`faq-item ${isOpen ? 'open' : ''}`} onClick={onClick}>
       <div className="faq-question">
         <h4>{faq.question}</h4>
         <span className="faq-toggle">{isOpen ? '−' : '+'}</span>
       </div>
-      <animated.div className="faq-answer" style={contentSpring}>
-        <p>{faq.answer}</p>
-      </animated.div>
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            className="faq-answer"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+            style={{ overflow: 'hidden' }}
+          >
+            <p>{faq.answer}</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }
 
 function FAQ() {
-  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
   const [openIndex, setOpenIndex] = useState(null)
 
-  const spring = useSpring({
-    opacity: inView ? 1 : 0,
-    transform: inView ? 'translateY(0px)' : 'translateY(24px)',
-    config: { mass: 1, tension: 120, friction: 26 }
-  })
-
   return (
-    <section className="section faq-section" ref={ref}>
+    <section className="section faq-section">
       <div className="container container-narrow">
-        <animated.div style={spring}>
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ type: 'spring', stiffness: 120, damping: 26 }}
+        >
           <div className="section-header">
             <span className="section-label">FAQ</span>
             <h2>Common Questions</h2>
@@ -476,7 +473,7 @@ function FAQ() {
               />
             ))}
           </div>
-        </animated.div>
+        </motion.div>
       </div>
     </section>
   )

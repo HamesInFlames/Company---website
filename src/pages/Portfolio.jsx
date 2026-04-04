@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useSpring, animated, useTrail } from '@react-spring/web'
-import { useInView } from 'react-intersection-observer'
+import { motion } from 'motion/react'
 import Icon from '../components/Icon'
 import './Portfolio.css'
 
@@ -90,41 +89,41 @@ const allProjects = [...clientProjects, ...demoProjects]
 const categories = ['All', 'Client Projects', 'Demo Concepts']
 
 function Hero() {
-  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
-
-  const spring = useSpring({
-    opacity: inView ? 1 : 0,
-    transform: inView ? 'translateY(0px)' : 'translateY(24px)',
-    config: { mass: 1, tension: 120, friction: 26 }
-  })
-
   return (
-    <section className="portfolio-hero" ref={ref}>
+    <section className="portfolio-hero">
       <div className="portfolio-hero-bg"></div>
-      <animated.div style={spring} className="container">
+      <motion.div
+        className="container"
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.1 }}
+        transition={{ type: 'spring', stiffness: 120, damping: 26 }}
+      >
         <span className="section-label">Portfolio</span>
         <h1>Recent Work</h1>
         <p className="portfolio-hero-subtitle">
           Real client projects alongside concept designs — examples of the kind of
           websites and systems we build.
         </p>
-      </animated.div>
+      </motion.div>
     </section>
   )
 }
 
 function ProjectCard({ project, index }) {
-  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
-
-  const spring = useSpring({
-    opacity: inView ? 1 : 0,
-    transform: inView ? 'scale(1)' : 'scale(0.97)',
-    delay: index * 80,
-    config: { mass: 1, tension: 120, friction: 26 }
-  })
-
   return (
-    <animated.article ref={ref} style={spring} className={`portfolio-card ${project.isClient ? 'client-project' : ''}`}>
+    <motion.article
+      className={`portfolio-card ${project.isClient ? 'client-project' : ''}`}
+      initial={{ opacity: 0, scale: 0.97 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{
+        type: 'spring',
+        stiffness: 120,
+        damping: 26,
+        delay: index * 0.08
+      }}
+    >
       {project.isClient && <span className="client-badge">Client Project</span>}
       <div className="portfolio-card-image">
         <img src={project.thumbnail} alt={project.title} loading="lazy" />
@@ -151,13 +150,12 @@ function ProjectCard({ project, index }) {
           ))}
         </div>
       </div>
-    </animated.article>
+    </motion.article>
   )
 }
 
 function ProjectGrid() {
   const [activeCategory, setActiveCategory] = useState('All')
-  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
 
   const filteredProjects = activeCategory === 'All'
     ? allProjects
@@ -165,16 +163,16 @@ function ProjectGrid() {
       ? clientProjects
       : demoProjects
 
-  const headerSpring = useSpring({
-    opacity: inView ? 1 : 0,
-    transform: inView ? 'translateY(0px)' : 'translateY(24px)',
-    config: { mass: 1, tension: 120, friction: 26 }
-  })
-
   return (
-    <section className="section portfolio-grid-section" ref={ref}>
+    <section className="section portfolio-grid-section">
       <div className="container container-wide">
-        <animated.div style={headerSpring} className="portfolio-filters">
+        <motion.div
+          className="portfolio-filters"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ type: 'spring', stiffness: 120, damping: 26 }}
+        >
           {categories.map(cat => (
             <button
               key={cat}
@@ -184,7 +182,7 @@ function ProjectGrid() {
               {cat}
             </button>
           ))}
-        </animated.div>
+        </motion.div>
         <div className="portfolio-grid">
           {filteredProjects.map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} />
@@ -216,21 +214,16 @@ function ProjectShowcase() {
 }
 
 function ShowcaseItem({ project, index }) {
-  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
   const isReversed = index % 2 === 1
 
-  const spring = useSpring({
-    opacity: inView ? 1 : 0,
-    transform: inView ? 'translateY(0px)' : 'translateY(24px)',
-    config: { mass: 1, tension: 120, friction: 26 }
-  })
-
   return (
-    <animated.div
-      ref={ref}
-      style={spring}
+    <motion.div
       id={project.id}
       className={`showcase-item ${isReversed ? 'reversed' : ''}`}
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{ type: 'spring', stiffness: 120, damping: 26 }}
     >
       <div className="showcase-image">
         <div className="device-mockup-container">
@@ -297,22 +290,20 @@ function ShowcaseItem({ project, index }) {
           )}
         </div>
       </div>
-    </animated.div>
+    </motion.div>
   )
 }
 
 function CTA() {
-  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
-
-  const spring = useSpring({
-    opacity: inView ? 1 : 0,
-    transform: inView ? 'scale(1)' : 'scale(0.98)',
-    config: { mass: 1, tension: 120, friction: 26 }
-  })
-
   return (
-    <section className="section portfolio-cta-section" ref={ref}>
-      <animated.div style={spring} className="container">
+    <section className="section portfolio-cta-section">
+      <motion.div
+        className="container"
+        initial={{ opacity: 0, scale: 0.98 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true, amount: 0.1 }}
+        transition={{ type: 'spring', stiffness: 120, damping: 26 }}
+      >
         <div className="portfolio-cta-card">
           <h2>Need Something Similar?</h2>
           <p>
@@ -328,7 +319,7 @@ function CTA() {
             </Link>
           </div>
         </div>
-      </animated.div>
+      </motion.div>
     </section>
   )
 }

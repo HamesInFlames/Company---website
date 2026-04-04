@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { useSpring, animated } from '@react-spring/web'
+import { motion, AnimatePresence } from 'motion/react'
 import './Header.css'
 
 const navLinks = [
@@ -29,28 +29,16 @@ function Header() {
     setIsMobileMenuOpen(false)
   }, [location])
 
-  const headerSpring = useSpring({
-    backgroundColor: isScrolled ? 'rgba(10, 10, 10, 0.9)' : 'rgba(10, 10, 10, 0)',
-    backdropFilter: isScrolled ? 'blur(20px)' : 'blur(0px)',
-    borderColor: isScrolled ? 'rgba(255, 255, 255, 0.1)' : 'rgba(255, 255, 255, 0)',
-    config: { tension: 300, friction: 30 }
-  })
-
-  const mobileMenuSpring = useSpring({
-    transform: isMobileMenuOpen ? 'translateX(0%)' : 'translateX(100%)',
-    opacity: isMobileMenuOpen ? 1 : 0,
-    config: { tension: 300, friction: 30 }
-  })
-
   return (
-    <animated.header 
-      className="header" 
-      style={{
-        backgroundColor: headerSpring.backgroundColor,
-        backdropFilter: headerSpring.backdropFilter,
-        WebkitBackdropFilter: headerSpring.backdropFilter,
-        borderBottom: headerSpring.borderColor.to(c => `1px solid ${c}`)
+    <motion.header
+      className="header"
+      animate={{
+        backgroundColor: isScrolled ? 'rgba(10, 10, 10, 0.9)' : 'rgba(10, 10, 10, 0)',
+        backdropFilter: isScrolled ? 'blur(20px)' : 'blur(0px)',
+        WebkitBackdropFilter: isScrolled ? 'blur(20px)' : 'blur(0px)',
+        borderBottom: isScrolled ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(255, 255, 255, 0)'
       }}
+      transition={{ duration: 0.3, ease: 'easeOut' }}
     >
       <div className="header-container">
         <Link to="/" className="header-logo">
@@ -86,23 +74,38 @@ function Header() {
         </button>
       </div>
 
-      <animated.div className="mobile-menu" style={mobileMenuSpring}>
-        <nav className="mobile-nav">
-          {navLinks.map((link, index) => (
-            <Link
-              key={link.path}
-              to={link.path}
-              className={`mobile-nav-link ${location.pathname === link.path ? 'active' : ''}`}
-              style={{ animationDelay: `${index * 0.05}s` }}
-            >
-              {link.label}
-            </Link>
-          ))}
-          <Link to="/contact" className="btn btn-primary mobile-cta">
-            Get Started
-          </Link>
-        </nav>
-      </animated.div>
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            className="mobile-menu"
+            initial={{ x: '100%', opacity: 0 }}
+            animate={{ x: '0%', opacity: 1 }}
+            exit={{ x: '100%', opacity: 0 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+          >
+            <nav className="mobile-nav">
+              {navLinks.map((link, index) => (
+                <motion.div
+                  key={link.path}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.05, duration: 0.3 }}
+                >
+                  <Link
+                    to={link.path}
+                    className={`mobile-nav-link ${location.pathname === link.path ? 'active' : ''}`}
+                  >
+                    {link.label}
+                  </Link>
+                </motion.div>
+              ))}
+              <Link to="/contact" className="btn btn-primary mobile-cta">
+                Get Started
+              </Link>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {isMobileMenuOpen && (
         <div 
@@ -110,11 +113,8 @@ function Header() {
           onClick={() => setIsMobileMenuOpen(false)}
         />
       )}
-    </animated.header>
+    </motion.header>
   )
 }
 
 export default Header
-
-
-

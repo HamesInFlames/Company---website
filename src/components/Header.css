@@ -8,12 +8,13 @@
   z-index: 1000;
   height: var(--header-height);
   transition: border-color var(--transition-fast);
+  overflow: visible;
 }
 
 .header-container {
   max-width: var(--max-width-wide);
   margin: 0 auto;
-  padding: 0 var(--space-lg);
+  padding: 0 var(--space-xl);
   height: 100%;
   display: flex;
   align-items: center;
@@ -26,12 +27,16 @@
   align-items: center;
   gap: var(--space-sm);
   z-index: 10;
+  position: relative;
 }
 
 .logo-image {
   height: 145px;
   width: auto;
   object-fit: contain;
+  position: relative;
+  z-index: 10;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
 }
 
 .header-nav {
@@ -200,11 +205,15 @@
   .mobile-menu {
     display: block;
   }
+
+  .logo-image {
+    height: 100px;
+  }
 }
 
 @media (max-width: 480px) {
   .logo-image {
-    height: 44px;
+    height: 80px;
   }
 
   .mobile-nav-link {

@@ -1,6 +1,5 @@
 import { useState } from 'react'
-import { useSpring, animated } from '@react-spring/web'
-import { useInView } from 'react-intersection-observer'
+import { motion } from 'motion/react'
 import Icon from '../components/Icon'
 import './Contact.css'
 
@@ -46,31 +45,28 @@ const budgetRanges = [
 ]
 
 function Hero() {
-  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
-  
-  const spring = useSpring({
-    opacity: inView ? 1 : 0,
-    transform: inView ? 'translateY(0px)' : 'translateY(40px)',
-    config: { mass: 1, tension: 80, friction: 26 }
-  })
-
   return (
-    <section className="contact-hero" ref={ref}>
+    <section className="contact-hero">
       <div className="contact-hero-bg"></div>
-      <animated.div style={spring} className="container">
+      <motion.div
+        className="container"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.1 }}
+        transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
+      >
         <span className="section-label">Contact</span>
         <h1>Let's Talk About What You Need</h1>
         <p className="contact-hero-subtitle">
           Not sure where to start? Book a free consultation and we'll figure out 
           what actually makes sense for your business.
         </p>
-      </animated.div>
+      </motion.div>
     </section>
   )
 }
 
 function ContactForm() {
-  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -84,12 +80,6 @@ function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
 
-  const spring = useSpring({
-    opacity: inView ? 1 : 0,
-    transform: inView ? 'translateY(0px)' : 'translateY(40px)',
-    config: { mass: 1, tension: 80, friction: 26 }
-  })
-
   const handleChange = (e) => {
     const { name, value } = e.target
     setFormData(prev => ({ ...prev, [name]: value }))
@@ -100,7 +90,7 @@ function ContactForm() {
     setIsSubmitting(true)
     
     try {
-      const response = await fetch(
+      await fetch(
         'https://script.google.com/macros/s/AKfycbw0S3bYRfqghPxZyovjLTLRMyF8QPUCxmvhYYhEdMI7dzZglnBjZg4xK_LteSL8ijmd/exec',
         {
           method: 'POST',
@@ -112,7 +102,6 @@ function ContactForm() {
         }
       )
       
-      // With no-cors mode, we can't read the response, but the request goes through
       setSubmitted(true)
     } catch (error) {
       console.error('Form submission error:', error)
@@ -124,7 +113,13 @@ function ContactForm() {
 
   if (submitted) {
     return (
-      <animated.div ref={ref} style={spring} className="form-success">
+      <motion.div
+        className="form-success"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.1 }}
+        transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
+      >
         <div className="success-icon">
           <Icon name="checkCircle" size={48} />
         </div>
@@ -151,12 +146,19 @@ function ContactForm() {
         >
           Send Another Message
         </button>
-      </animated.div>
+      </motion.div>
     )
   }
 
   return (
-    <animated.form ref={ref} style={spring} className="contact-form" onSubmit={handleSubmit}>
+    <motion.form
+      className="contact-form"
+      onSubmit={handleSubmit}
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
+    >
       <div className="form-header">
         <h2>Book Your Free Consultation</h2>
         <p>Fill out the form below and we'll get back to you within 24 hours.</p>
@@ -287,22 +289,19 @@ function ContactForm() {
           </>
         )}
       </button>
-    </animated.form>
+    </motion.form>
   )
 }
 
 function ContactInfo() {
-  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
-  
-  const spring = useSpring({
-    opacity: inView ? 1 : 0,
-    transform: inView ? 'translateX(0px)' : 'translateX(30px)',
-    delay: 200,
-    config: { mass: 1, tension: 80, friction: 26 }
-  })
-
   return (
-    <animated.div ref={ref} style={spring} className="contact-info">
+    <motion.div
+      className="contact-info"
+      initial={{ opacity: 0, x: 30 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{ duration: 0.7, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
+    >
       <div className="info-section">
         <h3>Get in Touch</h3>
         <p>
@@ -367,7 +366,7 @@ function ContactInfo() {
           business days.
         </p>
       </div>
-    </animated.div>
+    </motion.div>
   )
 }
 
@@ -388,7 +387,3 @@ function Contact() {
 }
 
 export default Contact
-
-
-
-

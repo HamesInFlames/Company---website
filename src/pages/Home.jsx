@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
-import { useSpring, animated, useTrail } from '@react-spring/web'
-import { useInView } from 'react-intersection-observer'
+import { motion } from 'motion/react'
 import Icon from '../components/Icon'
 import './Home.css'
 
@@ -78,62 +77,80 @@ const clientTypes = [
   { icon: 'briefcase', label: 'Professional Services' }
 ]
 
+const staggerContainer = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.08 }
+  }
+}
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { type: 'spring', stiffness: 120, damping: 26 }
+  }
+}
+
+const scaleIn = {
+  hidden: { opacity: 0, scale: 0.97 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { type: 'spring', stiffness: 120, damping: 26 }
+  }
+}
+
 function Hero() {
-  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
-
-  const labelSpring = useSpring({
-    opacity: inView ? 1 : 0,
-    transform: inView ? 'translateY(0px)' : 'translateY(20px)',
-    delay: 100,
-    config: { mass: 1, tension: 120, friction: 26 }
-  })
-
-  const titleSpring = useSpring({
-    opacity: inView ? 1 : 0,
-    transform: inView ? 'translateY(0px)' : 'translateY(24px)',
-    delay: 250,
-    config: { mass: 1, tension: 120, friction: 26 }
-  })
-
-  const subtitleSpring = useSpring({
-    opacity: inView ? 1 : 0,
-    transform: inView ? 'translateY(0px)' : 'translateY(20px)',
-    delay: 400,
-    config: { mass: 1, tension: 120, friction: 26 }
-  })
-
-  const ctaSpring = useSpring({
-    opacity: inView ? 1 : 0,
-    transform: inView ? 'translateY(0px)' : 'translateY(16px)',
-    delay: 550,
-    config: { mass: 1, tension: 120, friction: 26 }
-  })
-
   return (
-    <section className="hero home-hero" ref={ref}>
+    <section className="hero home-hero">
       <div className="hero-bg">
         <div className="hero-gradient-orb"></div>
         <div className="hero-grid-pattern"></div>
       </div>
       <div className="hero-content">
-        <animated.div style={labelSpring}>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
           <span className="hero-label">For Toronto's Small Businesses</span>
-        </animated.div>
-        <animated.h1 className="hero-title" style={titleSpring}>
+        </motion.div>
+        <motion.h1
+          className="hero-title"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.25 }}
+        >
           Websites & Systems<br />
           <span className="text-gradient">That Actually Work.</span>
-        </animated.h1>
-        <animated.p className="hero-subtitle" style={subtitleSpring}>
+        </motion.h1>
+        <motion.p
+          className="hero-subtitle"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
           We build practical websites, applications, and digital systems that make your business easier to run — with professional photography included in every project.
-        </animated.p>
-        <animated.div className="hero-cta" style={ctaSpring}>
+        </motion.p>
+        <motion.div
+          className="hero-cta"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.55 }}
+        >
           <Link to="/contact" className="btn btn-primary btn-large">
             Book Free Consultation
           </Link>
           <Link to="/portfolio" className="btn btn-secondary btn-large">
             View Our Work
           </Link>
-        </animated.div>
+        </motion.div>
       </div>
       <div className="hero-scroll-indicator">
         <div className="scroll-chevron">
@@ -147,17 +164,8 @@ function Hero() {
 }
 
 function ServicesPreview() {
-  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
-
-  const trail = useTrail(services.length, {
-    opacity: inView ? 1 : 0,
-    transform: inView ? 'translateY(0px)' : 'translateY(24px)',
-    delay: 100,
-    config: { mass: 1, tension: 120, friction: 26 }
-  })
-
   return (
-    <section className="section services-section" ref={ref}>
+    <section className="section services-section">
       <div className="container">
         <div className="section-header">
           <span className="section-label">What We Do</span>
@@ -166,83 +174,84 @@ function ServicesPreview() {
             Websites, tools, and operational help for Toronto's cafés, bakeries, salons, contractors, and local shops.
           </p>
         </div>
-        <div className="bento-grid">
-          {trail.map((style, index) => (
-            <animated.div
-              key={services[index].title}
-              style={style}
-              className={`bento-card ${services[index].size === 'large' ? 'bento-large' : ''}`}
+        <motion.div
+          className="bento-grid"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+        >
+          {services.map((service) => (
+            <motion.div
+              key={service.title}
+              variants={fadeUp}
+              className={`bento-card ${service.size === 'large' ? 'bento-large' : ''}`}
             >
               <div className="bento-icon">
-                <Icon name={services[index].icon} size={28} />
+                <Icon name={service.icon} size={28} />
               </div>
-              <h3>{services[index].title}</h3>
-              <p>{services[index].description}</p>
+              <h3>{service.title}</h3>
+              <p>{service.description}</p>
               <Link to="/services" className="btn btn-ghost">
                 Learn More
               </Link>
-            </animated.div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   )
 }
 
 function FeaturedWork() {
-  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
   const allProjects = [...clientProjects, ...demoProjects]
 
-  const headerSpring = useSpring({
-    opacity: inView ? 1 : 0,
-    transform: inView ? 'translateY(0px)' : 'translateY(24px)',
-    config: { mass: 1, tension: 120, friction: 26 }
-  })
-
-  const trail = useTrail(allProjects.length, {
-    opacity: inView ? 1 : 0,
-    transform: inView ? 'scale(1)' : 'scale(0.97)',
-    delay: 150,
-    config: { mass: 1, tension: 120, friction: 26 }
-  })
-
   return (
-    <section className="section featured-section" ref={ref}>
+    <section className="section featured-section">
       <div className="container container-wide">
-        <animated.div style={headerSpring} className="section-header">
+        <motion.div
+          className="section-header"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ type: 'spring', stiffness: 120, damping: 26 }}
+        >
           <span className="section-label">Our Work</span>
           <h2 className="section-title">Client Projects & Demos</h2>
           <p className="section-subtitle">
             Real client work alongside concept designs showcasing what we can build for you.
           </p>
-        </animated.div>
-        <div className="featured-grid">
-          {trail.map((style, index) => {
-            const project = allProjects[index]
-            return (
-              <animated.div key={project.id} style={style} className={`project-card ${project.isClient ? 'client-project' : ''}`}>
-                {project.isClient && <span className="client-badge">Client Project</span>}
-                <div className="project-image">
-                  <img src={project.image} alt={project.title} loading="lazy" />
-                  <div className="project-overlay">
-                    <Link to="/portfolio" className="btn btn-primary">
-                      View Details
-                    </Link>
-                  </div>
+        </motion.div>
+        <motion.div
+          className="featured-grid"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+        >
+          {allProjects.map((project) => (
+            <motion.div key={project.id} variants={scaleIn} className={`project-card ${project.isClient ? 'client-project' : ''}`}>
+              {project.isClient && <span className="client-badge">Client Project</span>}
+              <div className="project-image">
+                <img src={project.image} alt={project.title} loading="lazy" />
+                <div className="project-overlay">
+                  <Link to="/portfolio" className="btn btn-primary">
+                    View Details
+                  </Link>
                 </div>
-                <div className="project-content">
-                  <span className="project-category">{project.category}</span>
-                  <h3>{project.title}</h3>
-                  <p>{project.description}</p>
-                </div>
-                <div
-                  className="project-accent"
-                  style={{ backgroundColor: project.color }}
-                ></div>
-              </animated.div>
-            )
-          })}
-        </div>
+              </div>
+              <div className="project-content">
+                <span className="project-category">{project.category}</span>
+                <h3>{project.title}</h3>
+                <p>{project.description}</p>
+              </div>
+              <div
+                className="project-accent"
+                style={{ backgroundColor: project.color }}
+              ></div>
+            </motion.div>
+          ))}
+        </motion.div>
         <div className="section-cta">
           <Link to="/portfolio" className="btn btn-secondary btn-large">
             View All Projects
@@ -254,16 +263,8 @@ function FeaturedWork() {
 }
 
 function Process() {
-  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
-
-  const trail = useTrail(processSteps.length, {
-    opacity: inView ? 1 : 0,
-    transform: inView ? 'translateY(0px)' : 'translateY(24px)',
-    config: { mass: 1, tension: 120, friction: 26 }
-  })
-
   return (
-    <section className="section process-section" ref={ref}>
+    <section className="section process-section">
       <div className="container">
         <div className="section-header">
           <span className="section-label">How We Work</span>
@@ -272,39 +273,42 @@ function Process() {
             No complicated timelines or endless meetings. Just clear steps from start to finish.
           </p>
         </div>
-        <div className="process-timeline">
+        <motion.div
+          className="process-timeline"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+        >
           <div className="process-line"></div>
-          {trail.map((style, index) => (
-            <animated.div key={processSteps[index].number} style={style} className="process-step">
-              <div className="step-number-bg">{processSteps[index].number}</div>
+          {processSteps.map((step) => (
+            <motion.div key={step.number} variants={fadeUp} className="process-step">
+              <div className="step-number-bg">{step.number}</div>
               <div className="step-marker">
-                <span>{processSteps[index].number}</span>
+                <span>{step.number}</span>
               </div>
               <div className="step-content">
-                <h3>{processSteps[index].title}</h3>
-                <p>{processSteps[index].description}</p>
+                <h3>{step.title}</h3>
+                <p>{step.description}</p>
               </div>
-            </animated.div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   )
 }
 
 function ClientTypes() {
-  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
-
-  const spring = useSpring({
-    opacity: inView ? 1 : 0,
-    transform: inView ? 'translateY(0px)' : 'translateY(24px)',
-    config: { mass: 1, tension: 120, friction: 26 }
-  })
-
   return (
-    <section className="section clients-section" ref={ref}>
+    <section className="section clients-section">
       <div className="container">
-        <animated.div style={spring}>
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ type: 'spring', stiffness: 120, damping: 26 }}
+        >
           <div className="section-header">
             <span className="section-label">Who We Help</span>
             <h2 className="section-title">Built for Local Businesses</h2>
@@ -320,25 +324,23 @@ function ClientTypes() {
               </div>
             ))}
           </div>
-        </animated.div>
+        </motion.div>
       </div>
     </section>
   )
 }
 
 function PricingPreview() {
-  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
-
-  const spring = useSpring({
-    opacity: inView ? 1 : 0,
-    transform: inView ? 'translateY(0px)' : 'translateY(24px)',
-    config: { mass: 1, tension: 120, friction: 26 }
-  })
-
   return (
-    <section className="section pricing-preview-section" ref={ref}>
+    <section className="section pricing-preview-section">
       <div className="container">
-        <animated.div style={spring} className="pricing-preview-card">
+        <motion.div
+          className="pricing-preview-card"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ type: 'spring', stiffness: 120, damping: 26 }}
+        >
           <div className="pricing-preview-content">
             <span className="section-label">Transparent Pricing</span>
             <h2>Solutions for Every Budget</h2>
@@ -376,24 +378,22 @@ function PricingPreview() {
               <div className="chart-bar" style={{ height: '100%' }}><span>Full</span></div>
             </div>
           </div>
-        </animated.div>
+        </motion.div>
       </div>
     </section>
   )
 }
 
 function CTA() {
-  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
-
-  const spring = useSpring({
-    opacity: inView ? 1 : 0,
-    transform: inView ? 'scale(1)' : 'scale(0.98)',
-    config: { mass: 1, tension: 120, friction: 26 }
-  })
-
   return (
-    <section className="section cta-section" ref={ref}>
-      <animated.div style={spring} className="container">
+    <section className="section cta-section">
+      <motion.div
+        className="container"
+        initial={{ opacity: 0, scale: 0.98 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true, amount: 0.1 }}
+        transition={{ type: 'spring', stiffness: 120, damping: 26 }}
+      >
         <div className="cta-card">
           <h2>Not Sure Where to Start?</h2>
           <p>
@@ -408,7 +408,7 @@ function CTA() {
             </a>
           </div>
         </div>
-      </animated.div>
+      </motion.div>
     </section>
   )
 }

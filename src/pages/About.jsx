@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
-import { useSpring, animated, useTrail } from '@react-spring/web'
-import { useInView } from 'react-intersection-observer'
+import { motion } from 'motion/react'
 import Icon from '../components/Icon'
 import './About.css'
 
@@ -27,50 +26,55 @@ const values = [
   }
 ]
 
-function Hero() {
-  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
-  
-  const spring = useSpring({
-    opacity: inView ? 1 : 0,
-    transform: inView ? 'translateY(0px)' : 'translateY(40px)',
-    config: { mass: 1, tension: 80, friction: 26 }
-  })
+const staggerContainer = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.08 }
+  }
+}
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { type: 'spring', stiffness: 80, damping: 26 }
+  }
+}
+
+function Hero() {
   return (
-    <section className="about-hero" ref={ref}>
+    <section className="about-hero">
       <div className="about-hero-bg"></div>
-      <animated.div style={spring} className="container">
+      <motion.div
+        className="container"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.1 }}
+        transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
+      >
         <span className="section-label">About Kim Consultant</span>
         <h1>Systems-Focused Help for Local Businesses</h1>
         <p className="about-hero-subtitle">
           We're a small Toronto-based consultancy helping local businesses build websites, applications, and digital systems that reduce chaos and make day-to-day operations simpler. Every project includes professional photography.
         </p>
-      </animated.div>
+      </motion.div>
     </section>
   )
 }
 
 function Story() {
-  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
-  
-  const leftSpring = useSpring({
-    opacity: inView ? 1 : 0,
-    transform: inView ? 'translateX(0px)' : 'translateX(-30px)',
-    config: { mass: 1, tension: 80, friction: 26 }
-  })
-
-  const rightSpring = useSpring({
-    opacity: inView ? 1 : 0,
-    transform: inView ? 'translateX(0px)' : 'translateX(30px)',
-    delay: 200,
-    config: { mass: 1, tension: 80, friction: 26 }
-  })
-
   return (
-    <section className="section story-section" ref={ref}>
+    <section className="section story-section">
       <div className="container">
         <div className="story-grid">
-          <animated.div style={leftSpring} className="story-content">
+          <motion.div
+            className="story-content"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
+          >
             <span className="section-label">Why We Exist</span>
             <h2>Just Getting Started</h2>
             <p>
@@ -91,8 +95,14 @@ function Story() {
               account managers or inflated agency fees. We're here to help local businesses 
               run smoother, not to sell big promises.
             </p>
-          </animated.div>
-          <animated.div style={rightSpring} className="story-image">
+          </motion.div>
+          <motion.div
+            className="story-image"
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.7, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
+          >
             <div className="image-frame">
               <img 
                 src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80" 
@@ -110,7 +120,7 @@ function Story() {
                 <span className="stat-label">Satisfaction</span>
               </div>
             </div>
-          </animated.div>
+          </motion.div>
         </div>
       </div>
     </section>
@@ -118,17 +128,15 @@ function Story() {
 }
 
 function Mission() {
-  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
-  
-  const spring = useSpring({
-    opacity: inView ? 1 : 0,
-    transform: inView ? 'translateY(0px)' : 'translateY(30px)',
-    config: { mass: 1, tension: 80, friction: 26 }
-  })
-
   return (
-    <section className="section mission-section" ref={ref}>
-      <animated.div style={spring} className="container container-narrow">
+    <section className="section mission-section">
+      <motion.div
+        className="container container-narrow"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.1 }}
+        transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
+      >
         <div className="mission-card">
           <span className="section-label">What We Believe</span>
           <h2>"Small businesses deserve practical websites and systems that work — 
@@ -139,22 +147,14 @@ function Mission() {
             and affordable because that's what local businesses actually need.
           </p>
         </div>
-      </animated.div>
+      </motion.div>
     </section>
   )
 }
 
 function Values() {
-  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
-  
-  const trail = useTrail(values.length, {
-    opacity: inView ? 1 : 0,
-    transform: inView ? 'translateY(0px)' : 'translateY(40px)',
-    config: { mass: 1, tension: 80, friction: 26 }
-  })
-
   return (
-    <section className="section values-section" ref={ref}>
+    <section className="section values-section">
       <div className="container">
         <div className="section-header">
           <span className="section-label">Our Values</span>
@@ -163,35 +163,39 @@ function Values() {
             The principles that guide our work and relationships with clients.
           </p>
         </div>
-        <div className="values-grid">
-          {trail.map((style, index) => (
-            <animated.div key={values[index].title} style={style} className="value-card">
+        <motion.div
+          className="values-grid"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+        >
+          {values.map((value) => (
+            <motion.div key={value.title} variants={fadeUp} className="value-card">
               <div className="value-icon">
-                <Icon name={values[index].icon} size={28} />
+                <Icon name={value.icon} size={28} />
               </div>
-              <h3>{values[index].title}</h3>
-              <p>{values[index].description}</p>
-            </animated.div>
+              <h3>{value.title}</h3>
+              <p>{value.description}</p>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   )
 }
 
 function Approach() {
-  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
-  
-  const spring = useSpring({
-    opacity: inView ? 1 : 0,
-    transform: inView ? 'translateY(0px)' : 'translateY(30px)',
-    config: { mass: 1, tension: 80, friction: 26 }
-  })
-
   return (
-    <section className="section approach-section" ref={ref}>
+    <section className="section approach-section">
       <div className="container">
-        <animated.div style={spring} className="approach-content">
+        <motion.div
+          className="approach-content"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
+        >
           <div className="approach-text">
             <span className="section-label">Our Approach</span>
             <h2>Small Team, Direct Communication</h2>
@@ -227,24 +231,22 @@ function Approach() {
               />
             </div>
           </div>
-        </animated.div>
+        </motion.div>
       </div>
     </section>
   )
 }
 
 function CTA() {
-  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
-  
-  const spring = useSpring({
-    opacity: inView ? 1 : 0,
-    transform: inView ? 'scale(1)' : 'scale(0.98)',
-    config: { mass: 1, tension: 80, friction: 26 }
-  })
-
   return (
-    <section className="section cta-section" ref={ref}>
-      <animated.div style={spring} className="container">
+    <section className="section cta-section">
+      <motion.div
+        className="container"
+        initial={{ opacity: 0, scale: 0.98 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true, amount: 0.1 }}
+        transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
+      >
         <div className="cta-card">
           <h2>Be Part of Our Story</h2>
           <p>
@@ -255,7 +257,7 @@ function CTA() {
             Let's Chat
           </Link>
         </div>
-      </animated.div>
+      </motion.div>
     </section>
   )
 }
@@ -274,4 +276,3 @@ function About() {
 }
 
 export default About
-
