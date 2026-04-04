@@ -5,7 +5,6 @@ import { useInView } from 'react-intersection-observer'
 import Icon from '../components/Icon'
 import './Portfolio.css'
 
-// Real client projects
 const clientProjects = [
   {
     id: 1,
@@ -19,7 +18,8 @@ const clientProjects = [
     thumbnail: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=600&q=80',
     color: '#8B7355',
     features: ['Responsive Design', 'Online Menu', 'Location Map', 'Catering Forms', 'Photo Gallery'],
-    tools: ['React', 'Vite', 'Railway']
+    tools: ['React', 'Vite', 'Railway'],
+    url: null
   },
   {
     id: 2,
@@ -33,11 +33,11 @@ const clientProjects = [
     thumbnail: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600&q=80',
     color: '#D4A5A5',
     features: ['Dynamic Product Catalog', 'CSV Content Management', 'Contact Form', 'Allergen System', 'Image Optimization', 'Mobile-First Design'],
-    tools: ['React 19', 'Vite 7', 'Express', 'Railway', 'Resend API']
+    tools: ['React 19', 'Vite 7', 'Express', 'Railway', 'Resend API'],
+    url: 'https://www.lumierepatisserie.ca/'
   }
 ]
 
-// Demo/concept projects to showcase capabilities
 const demoProjects = [
   {
     id: 3,
@@ -51,7 +51,8 @@ const demoProjects = [
     thumbnail: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80',
     color: '#FF6B35',
     features: ['Class Booking', 'Membership Plans', 'Trainer Profiles', 'Schedule Calendar', 'Mobile App Link'],
-    tools: ['React', 'Mindbody API', 'Tailwind']
+    tools: ['React', 'Mindbody API', 'Tailwind'],
+    url: null
   },
   {
     id: 4,
@@ -65,7 +66,8 @@ const demoProjects = [
     thumbnail: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=80',
     color: '#6F4E37',
     features: ['Online Menu', 'Loyalty Program', 'Multiple Locations', 'Online Ordering', 'Gift Cards'],
-    tools: ['WordPress', 'Square', 'Custom Plugin']
+    tools: ['WordPress', 'Square', 'Custom Plugin'],
+    url: null
   },
   {
     id: 5,
@@ -79,21 +81,21 @@ const demoProjects = [
     thumbnail: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80',
     color: '#4A5568',
     features: ['Service Pages', 'Project Gallery', 'Quote Requests', 'Testimonials', 'License Verification'],
-    tools: ['React', 'Sanity CMS', 'Calendly']
+    tools: ['React', 'Sanity CMS', 'Calendly'],
+    url: null
   }
 ]
 
 const allProjects = [...clientProjects, ...demoProjects]
-
 const categories = ['All', 'Client Projects', 'Demo Concepts']
 
 function Hero() {
   const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
-  
+
   const spring = useSpring({
     opacity: inView ? 1 : 0,
-    transform: inView ? 'translateY(0px)' : 'translateY(40px)',
-    config: { mass: 1, tension: 80, friction: 26 }
+    transform: inView ? 'translateY(0px)' : 'translateY(24px)',
+    config: { mass: 1, tension: 120, friction: 26 }
   })
 
   return (
@@ -103,7 +105,7 @@ function Hero() {
         <span className="section-label">Portfolio</span>
         <h1>Recent Work</h1>
         <p className="portfolio-hero-subtitle">
-          Real client projects alongside concept designs — examples of the kind of 
+          Real client projects alongside concept designs — examples of the kind of
           websites and systems we build.
         </p>
       </animated.div>
@@ -113,12 +115,12 @@ function Hero() {
 
 function ProjectCard({ project, index }) {
   const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
-  
+
   const spring = useSpring({
     opacity: inView ? 1 : 0,
-    transform: inView ? 'scale(1)' : 'scale(0.95)',
-    delay: index * 100,
-    config: { mass: 1, tension: 100, friction: 26 }
+    transform: inView ? 'scale(1)' : 'scale(0.97)',
+    delay: index * 80,
+    config: { mass: 1, tension: 120, friction: 26 }
   })
 
   return (
@@ -131,8 +133,8 @@ function ProjectCard({ project, index }) {
             View Details
           </Link>
         </div>
-        <div 
-          className="portfolio-card-accent" 
+        <div
+          className="portfolio-card-accent"
           style={{ backgroundColor: project.color }}
         />
       </div>
@@ -157,16 +159,16 @@ function ProjectGrid() {
   const [activeCategory, setActiveCategory] = useState('All')
   const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
 
-  const filteredProjects = activeCategory === 'All' 
-    ? allProjects 
+  const filteredProjects = activeCategory === 'All'
+    ? allProjects
     : activeCategory === 'Client Projects'
       ? clientProjects
       : demoProjects
 
   const headerSpring = useSpring({
     opacity: inView ? 1 : 0,
-    transform: inView ? 'translateY(0px)' : 'translateY(30px)',
-    config: { mass: 1, tension: 80, friction: 26 }
+    transform: inView ? 'translateY(0px)' : 'translateY(24px)',
+    config: { mass: 1, tension: 120, friction: 26 }
   })
 
   return (
@@ -194,10 +196,8 @@ function ProjectGrid() {
 }
 
 function ProjectShowcase() {
-  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
-
   return (
-    <section className="section showcase-section" ref={ref}>
+    <section className="section showcase-section">
       <div className="container container-wide">
         <div className="section-header">
           <span className="section-label">Case Studies</span>
@@ -206,7 +206,7 @@ function ProjectShowcase() {
             Detailed looks at our work—both client projects and concept designs.
           </p>
         </div>
-        
+
         {allProjects.map((project, index) => (
           <ShowcaseItem key={project.id} project={project} index={index} />
         ))}
@@ -221,12 +221,12 @@ function ShowcaseItem({ project, index }) {
 
   const spring = useSpring({
     opacity: inView ? 1 : 0,
-    transform: inView ? 'translateY(0px)' : 'translateY(40px)',
-    config: { mass: 1, tension: 80, friction: 26 }
+    transform: inView ? 'translateY(0px)' : 'translateY(24px)',
+    config: { mass: 1, tension: 120, friction: 26 }
   })
 
   return (
-    <animated.div 
+    <animated.div
       ref={ref}
       style={spring}
       id={project.id}
@@ -236,14 +236,14 @@ function ShowcaseItem({ project, index }) {
         <div className="device-mockup-container">
           <div className="laptop-mockup">
             <div className="laptop-screen">
-              <img src={project.image} alt={project.title} />
+              <img src={project.image} alt={project.title} loading="lazy" />
             </div>
             <div className="laptop-base"></div>
           </div>
           <div className="phone-mockup">
             <div className="phone-notch"></div>
             <div className="phone-screen">
-              <img src={project.thumbnail} alt={`${project.title} mobile`} />
+              <img src={project.thumbnail} alt={`${project.title} mobile`} loading="lazy" />
             </div>
           </div>
         </div>
@@ -281,11 +281,20 @@ function ShowcaseItem({ project, index }) {
           </div>
         </div>
         <div className="showcase-cta">
-          <button className="btn btn-primary" disabled>
-            <Icon name="externalLink" size={16} />
-            View Live Demo
-          </button>
-          <span className="demo-note">Demo sites are for illustration purposes</span>
+          {project.url ? (
+            <a href={project.url} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+              <Icon name="externalLink" size={16} />
+              View Live Site
+            </a>
+          ) : (
+            <>
+              <button className="btn btn-primary" disabled>
+                <Icon name="externalLink" size={16} />
+                View Live Demo
+              </button>
+              <span className="demo-note">{project.isClient ? 'Coming soon' : 'Demo sites are for illustration purposes'}</span>
+            </>
+          )}
         </div>
       </div>
     </animated.div>
@@ -294,11 +303,11 @@ function ShowcaseItem({ project, index }) {
 
 function CTA() {
   const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
-  
+
   const spring = useSpring({
     opacity: inView ? 1 : 0,
     transform: inView ? 'scale(1)' : 'scale(0.98)',
-    config: { mass: 1, tension: 80, friction: 26 }
+    config: { mass: 1, tension: 120, friction: 26 }
   })
 
   return (
@@ -307,7 +316,7 @@ function CTA() {
         <div className="portfolio-cta-card">
           <h2>Need Something Similar?</h2>
           <p>
-            Let's talk about what you need. Book a free consultation to discuss 
+            Let's talk about what you need. Book a free consultation to discuss
             your website or system project.
           </p>
           <div className="cta-actions">
@@ -336,7 +345,3 @@ function Portfolio() {
 }
 
 export default Portfolio
-
-
-
-

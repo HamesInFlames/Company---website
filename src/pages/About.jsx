@@ -96,7 +96,8 @@ function Story() {
             <div className="image-frame">
               <img 
                 src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80" 
-                alt="Professional workspace with laptop and coffee" 
+                alt="Professional workspace with laptop and coffee"
+                loading="lazy"
               />
             </div>
             <div className="story-stats">
@@ -221,7 +222,8 @@ function Approach() {
             <div className="approach-image">
               <img 
                 src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80" 
-                alt="Team collaboration and strategy session" 
+                alt="Team collaboration and strategy session"
+                loading="lazy"
               />
             </div>
           </div>

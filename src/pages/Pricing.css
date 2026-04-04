@@ -1,17 +1,20 @@
-/* Pricing Page Styles */
+/* Pricing Page — Framer-Inspired */
 
 /* Hero */
 .pricing-hero {
-  padding: 12rem var(--space-lg) 4rem;
+  padding: calc(var(--header-height) + var(--space-3xl)) var(--space-lg) var(--space-2xl);
   text-align: center;
   position: relative;
   overflow: hidden;
+  min-height: 45vh;
+  display: flex;
+  align-items: center;
 }
 
 .pricing-hero-bg {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(201, 169, 98, 0.1), transparent);
+  background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(201, 169, 98, 0.08), transparent);
   z-index: 0;
 }
 
@@ -24,12 +27,13 @@
   font-size: clamp(2.5rem, 5vw, 4rem);
   max-width: 800px;
   margin: var(--space-md) auto var(--space-lg);
+  letter-spacing: -0.05em;
 }
 
 .pricing-hero-subtitle {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   color: var(--color-light-gray);
-  max-width: 700px;
+  max-width: 600px;
   margin: 0 auto;
   line-height: 1.7;
 }
@@ -37,7 +41,6 @@
 /* Packages Section */
 .packages-section {
   background: var(--color-charcoal);
-  padding: var(--space-3xl) 0;
   overflow: visible;
 }
 
@@ -45,26 +48,17 @@
   overflow: visible;
 }
 
-.packages-section .section-header {
-  margin-bottom: var(--space-2xl);
-  text-align: center;
-}
-
-.packages-section .section-subtitle {
-  margin-bottom: 0;
-}
-
 /* Pricing Grid */
 .pricing-grid {
   display: grid;
-  gap: var(--space-xl);
+  gap: var(--space-lg);
   max-width: 1400px;
   margin: 0 auto;
   align-items: stretch;
 }
 
 .pricing-grid-4 {
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .pricing-grid-2 {
@@ -74,74 +68,71 @@
 
 /* Pricing Card */
 .pricing-card {
-  background: rgba(255, 255, 255, 0.02);
-  border: 2px solid rgba(255, 255, 255, 0.08);
+  background: var(--color-card);
+  border: 1px solid var(--color-card-border);
   border-radius: var(--radius-xl);
-  padding: var(--space-xl);
+  padding: var(--space-lg) var(--space-md);
   display: flex;
   flex-direction: column;
   position: relative;
   transition: all var(--transition-medium);
   height: 100%;
-  width: 100%;
-  box-sizing: border-box;
+  will-change: transform;
 }
 
 .pricing-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  border-color: var(--color-card-border-hover);
 }
 
 .pricing-card.popular {
-  background: linear-gradient(180deg, rgba(201, 169, 98, 0.15) 0%, rgba(201, 169, 98, 0.05) 100%);
-  border: 3px solid var(--color-accent);
-  transform: scale(1.02);
-  box-shadow: 0 8px 32px rgba(201, 169, 98, 0.25);
+  background: rgba(201, 169, 98, 0.06);
+  border: 2px solid var(--color-accent);
+  transform: scale(1.03);
   z-index: 10;
 }
 
 .pricing-card.popular:hover {
-  border-color: var(--color-accent-light);
-  box-shadow: 0 12px 48px rgba(201, 169, 98, 0.35);
+  border-color: var(--color-accent-hover);
   transform: scale(1.04) translateY(-4px);
+  box-shadow: 0 8px 40px rgba(201, 169, 98, 0.15);
 }
 
 .popular-badge {
   position: absolute;
-  top: -16px;
+  top: -14px;
   left: 50%;
   transform: translateX(-50%);
-  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-light) 100%);
-  color: var(--color-white);
-  padding: 0.5rem 1.5rem;
-  border-radius: var(--radius-full);
-  font-size: 0.75rem;
+  background: var(--color-accent);
+  color: var(--color-black);
+  padding: 0.4rem 1.25rem;
+  border-radius: var(--radius-button);
+  font-size: 0.6875rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  box-shadow: 0 4px 12px rgba(201, 169, 98, 0.4);
-  z-index: 11;
+  letter-spacing: 0.08em;
   white-space: nowrap;
+  z-index: 11;
 }
 
-/* Build Card Specific */
+/* Build Card */
 .build-card .pricing-card-top {
   text-align: center;
   margin-bottom: var(--space-md);
   padding-bottom: var(--space-md);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid var(--color-card-border);
 }
 
 .build-card .pricing-card-top h3 {
-  font-size: 1.125rem;
+  font-size: 1rem;
   font-weight: 600;
   margin: 0 0 var(--space-sm);
-  color: var(--color-white);
+  color: var(--color-silver);
+  letter-spacing: -0.01em;
 }
 
 .build-card.popular .pricing-card-top h3 {
-  color: var(--color-accent-light);
+  color: var(--color-accent);
 }
 
 .build-card .pricing-amount {
@@ -151,25 +142,24 @@
 }
 
 .build-card .pricing-amount .price {
-  font-size: 2rem;
-  font-weight: 700;
-  line-height: 1;
-  background: linear-gradient(135deg, var(--color-white) 0%, var(--color-silver) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  color: var(--color-white);
+  white-space: nowrap;
 }
 
 .build-card.popular .pricing-amount .price {
-  font-size: 2.25rem;
-  background: linear-gradient(135deg, var(--color-accent-light) 0%, var(--color-accent) 100%);
+  font-size: 1.625rem;
+  background: var(--gradient-accent);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .build-card.custom-tier .pricing-amount .price {
-  font-size: 1.75rem;
+  font-size: 1.5rem;
 }
 
 .tier-description {
@@ -178,7 +168,7 @@
 }
 
 .tier-main-desc {
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   color: var(--color-light-gray);
   line-height: 1.6;
   margin: 0 0 var(--space-sm);
@@ -194,28 +184,21 @@
 
 .pricing-cta {
   width: 100%;
-  padding: 0.75rem 0.75rem;
-  font-weight: 500;
+  padding: 0.75rem;
+  font-weight: 600;
   font-size: 0.8125rem;
   margin-top: auto;
-  white-space: nowrap;
   text-align: center;
 }
 
-.pricing-card.popular .pricing-cta {
-  padding: 0.875rem 1.25rem;
-  font-weight: 600;
-}
-
-/* Operating Fees Section */
+/* Operating Fees */
 .operating-fees-section {
   background: var(--color-black);
-  padding: var(--space-3xl) 0;
 }
 
 .operating-fees-card {
-  background: linear-gradient(135deg, rgba(201, 169, 98, 0.08), rgba(201, 169, 98, 0.02));
-  border: 1px solid rgba(201, 169, 98, 0.25);
+  background: var(--color-card);
+  border: 1px solid rgba(201, 169, 98, 0.15);
   border-radius: var(--radius-xl);
   padding: var(--space-3xl);
   max-width: 800px;
@@ -228,15 +211,16 @@
 }
 
 .operating-fees-header h2 {
-  font-size: 2rem;
+  font-size: 1.75rem;
   margin: var(--space-md) 0;
+  letter-spacing: -0.04em;
 }
 
 .operating-intro {
-  font-size: 1.125rem;
+  font-size: 1rem;
   color: var(--color-light-gray);
   line-height: 1.7;
-  max-width: 600px;
+  max-width: 560px;
   margin: 0 auto;
 }
 
@@ -245,7 +229,8 @@
   align-items: flex-start;
   gap: var(--space-sm);
   padding: var(--space-md);
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--color-card-border);
   border-radius: var(--radius-md);
   margin-bottom: var(--space-lg);
 }
@@ -257,7 +242,7 @@
 }
 
 .fees-disclaimer p {
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   color: var(--color-silver);
   margin: 0;
   line-height: 1.5;
@@ -275,7 +260,7 @@
   align-items: center;
   gap: var(--space-sm);
   color: var(--color-light-gray);
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
 }
 
 .operating-list li .icon {
@@ -289,24 +274,25 @@
   align-items: center;
   gap: var(--space-xs);
   padding: var(--space-xl);
-  background: rgba(201, 169, 98, 0.1);
-  border: 2px solid rgba(201, 169, 98, 0.3);
+  background: rgba(201, 169, 98, 0.06);
+  border: 1px solid rgba(201, 169, 98, 0.2);
   border-radius: var(--radius-lg);
   margin-bottom: var(--space-xl);
   text-align: center;
 }
 
 .cost-label {
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   color: var(--color-gray);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
 }
 
 .cost-amount {
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--color-accent-light);
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--color-accent);
+  letter-spacing: -0.03em;
 }
 
 .cost-note {
@@ -321,7 +307,7 @@
 }
 
 .operating-benefits > p {
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   color: var(--color-silver);
   margin: 0 0 var(--space-md);
 }
@@ -338,6 +324,7 @@
   gap: var(--space-xs);
   color: var(--color-white);
   font-weight: 500;
+  font-size: 0.875rem;
 }
 
 .benefit-item .icon {
@@ -346,17 +333,16 @@
 
 .transparency-note {
   text-align: center;
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   color: var(--color-gray);
   margin: 0;
   padding-top: var(--space-md);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid var(--color-card-border);
 }
 
-/* Maintenance Section */
+/* Maintenance */
 .maintenance-section {
   background: var(--color-charcoal);
-  padding: var(--space-3xl) 0;
 }
 
 .maintenance-card .pricing-card-top {
@@ -367,18 +353,19 @@
 }
 
 .maintenance-card .plan-name {
-  font-size: 1.375rem;
+  font-size: 1.25rem;
   font-weight: 700;
   margin: 0 0 0.25rem;
   color: var(--color-white);
+  letter-spacing: -0.02em;
 }
 
 .maintenance-card.popular .plan-name {
-  color: var(--color-accent-light);
+  color: var(--color-accent);
 }
 
 .maintenance-card .plan-tagline {
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   color: var(--color-gray);
   margin: 0 0 var(--space-md);
   font-style: italic;
@@ -392,27 +379,28 @@
 }
 
 .maintenance-card .pricing-amount .price {
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 800;
   line-height: 1;
   color: var(--color-white);
+  letter-spacing: -0.03em;
 }
 
 .maintenance-card.popular .pricing-amount .price {
-  background: linear-gradient(135deg, var(--color-accent-light) 0%, var(--color-accent) 100%);
+  background: var(--gradient-accent);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .maintenance-card .pricing-amount .price-suffix {
-  font-size: 1rem;
+  font-size: 0.875rem;
   color: var(--color-gray);
   font-weight: 400;
 }
 
 .maintenance-card .plan-description {
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   color: var(--color-light-gray);
   text-align: center;
   margin: 0 0 var(--space-md);
@@ -420,29 +408,28 @@
 }
 
 .includes-label {
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   color: var(--color-accent);
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-weight: 600;
   margin-bottom: var(--space-sm);
   padding-top: var(--space-md);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid var(--color-card-border);
 }
 
-/* Pricing Features */
 .pricing-features {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 0.625rem;
+  gap: 0.5rem;
   margin-bottom: var(--space-lg);
 }
 
 .pricing-features li {
   display: flex;
   align-items: flex-start;
-  gap: 0.625rem;
+  gap: 0.5rem;
   color: var(--color-light-gray);
   font-size: 0.875rem;
   line-height: 1.4;
@@ -454,15 +441,106 @@
   color: var(--color-accent);
 }
 
-/* Fair Pricing Section */
-.fair-pricing-section {
+/* Value Comparison — the anchor */
+.value-comparison-section {
   background: var(--color-black);
-  padding: var(--space-3xl) 0;
+}
+
+.comparison-card {
+  max-width: 800px;
+  margin: 0 auto;
+  background: var(--color-card);
+  border: 1px solid rgba(201, 169, 98, 0.2);
+  border-radius: var(--radius-xl);
+  padding: var(--space-2xl);
+  overflow: hidden;
+}
+
+.comparison-table {
+  display: flex;
+  flex-direction: column;
+}
+
+.comparison-header {
+  display: flex;
+  padding-bottom: var(--space-sm);
+  margin-bottom: var(--space-sm);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-gray);
+}
+
+.comparison-row {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--color-card-border);
+  font-size: 0.9375rem;
+}
+
+.comp-col-service {
+  flex: 1 1 40%;
+  color: var(--color-silver);
+}
+
+.comp-col-market {
+  flex: 1 1 30%;
+  text-align: center;
+}
+
+.comp-col-ours {
+  flex: 1 1 30%;
+  text-align: right;
+}
+
+.comp-strikethrough {
+  text-decoration: line-through;
+  color: var(--color-gray);
+  opacity: 0.5;
+}
+
+.comp-included {
+  color: #4ade80;
+  font-weight: 600;
+}
+
+.comparison-total {
+  border-bottom: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: var(--space-xs);
+  padding-top: var(--space-sm);
+  opacity: 0.7;
+}
+
+.comp-total-amount {
+  font-weight: 600;
+}
+
+.comparison-highlight {
+  border-bottom: none;
+  padding-top: var(--space-sm);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.comp-final-price {
+  color: var(--color-accent) !important;
+  font-size: 1.375rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+/* Fair Pricing */
+.fair-pricing-section {
+  background: var(--color-charcoal);
 }
 
 .fair-pricing-card {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--color-card);
+  border: 1px solid var(--color-card-border);
   border-radius: var(--radius-xl);
   padding: var(--space-3xl);
   max-width: 700px;
@@ -473,6 +551,7 @@
 .fair-pricing-content h2 {
   font-size: 1.75rem;
   margin: var(--space-md) 0 var(--space-xl);
+  letter-spacing: -0.04em;
 }
 
 .fair-pricing-list {
@@ -488,54 +567,93 @@
   display: flex;
   align-items: flex-start;
   gap: var(--space-sm);
-  font-size: 1rem;
+  font-size: 0.9375rem;
   color: var(--color-light-gray);
   line-height: 1.5;
 }
 
-.fair-pricing-list .check-icon {
+.fair-pricing-list li .icon {
   color: var(--color-accent);
-  font-weight: 700;
   flex-shrink: 0;
+  margin-top: 2px;
 }
 
 .fair-pricing-conclusion {
-  font-size: 1.125rem;
+  font-size: 1rem;
   color: var(--color-silver);
   margin: 0;
   padding-top: var(--space-lg);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid var(--color-card-border);
   font-style: italic;
 }
 
-/* FAQ Section */
+/* FAQ — Accordion */
 .faq-section {
-  background: var(--color-charcoal);
+  background: var(--color-black);
 }
 
 .faq-list {
   display: flex;
   flex-direction: column;
-  gap: var(--space-lg);
+  gap: var(--space-sm);
 }
 
 .faq-item {
-  padding: var(--space-lg);
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--color-card);
+  border: 1px solid var(--color-card-border);
   border-radius: var(--radius-lg);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all var(--transition-fast);
 }
 
-.faq-item h4 {
-  font-size: 1.125rem;
-  margin-bottom: var(--space-sm);
+.faq-item:hover {
+  border-color: var(--color-card-border-hover);
 }
 
-.faq-item p {
-  font-size: var(--text-sm);
+.faq-item.open {
+  border-color: rgba(201, 169, 98, 0.2);
+}
+
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-lg);
+  gap: var(--space-md);
+}
+
+.faq-question h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.faq-toggle {
+  font-size: 1.25rem;
+  color: var(--color-accent);
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(201, 169, 98, 0.1);
+  font-weight: 300;
+}
+
+.faq-answer {
+  overflow: hidden;
+}
+
+.faq-answer p {
+  padding: 0 var(--space-lg) var(--space-lg);
+  font-size: 0.875rem;
   color: var(--color-gray);
   margin: 0;
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
 /* Responsive */
@@ -543,11 +661,11 @@
   .pricing-grid-4 {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   .pricing-card.popular {
     transform: scale(1);
   }
-  
+
   .pricing-card.popular:hover {
     transform: scale(1.02) translateY(-4px);
   }
@@ -555,13 +673,13 @@
 
 @media (max-width: 768px) {
   .pricing-hero {
-    padding: 10rem var(--space-lg) 3rem;
+    padding: calc(var(--header-height) + var(--space-2xl)) var(--space-lg) var(--space-xl);
+    min-height: auto;
   }
 
   .pricing-grid-4,
   .pricing-grid-2 {
     grid-template-columns: 1fr;
-    gap: var(--space-lg);
   }
 
   .pricing-card {
@@ -585,26 +703,42 @@
     padding: var(--space-xl);
   }
 
-  .fair-pricing-content h2 {
-    font-size: 1.5rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .popular-badge {
-    font-size: 0.65rem;
-    padding: 0.4rem 1rem;
+  .comparison-card {
+    padding: var(--space-lg);
   }
 
-  .build-card .pricing-amount .price {
-    font-size: 1.75rem;
+  .comparison-header {
+    font-size: 0.6875rem;
   }
 
-  .maintenance-card .pricing-amount .price {
-    font-size: 2.5rem;
+  .comparison-row {
+    font-size: 0.8125rem;
+    gap: var(--space-xs);
   }
 
-  .cost-amount {
-    font-size: 1.5rem;
+  .comp-col-service {
+    flex: 1 1 35%;
+  }
+
+  .comp-col-market {
+    flex: 1 1 32%;
+    font-size: 0.75rem;
+  }
+
+  .comp-col-ours {
+    flex: 1 1 33%;
+    font-size: 0.8125rem;
+  }
+
+  .comp-final-price {
+    font-size: 1.125rem;
+  }
+
+  .faq-question {
+    padding: var(--space-md);
+  }
+
+  .faq-answer p {
+    padding: 0 var(--space-md) var(--space-md);
   }
 }

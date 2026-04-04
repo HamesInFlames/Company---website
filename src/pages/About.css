@@ -1,17 +1,20 @@
-/* About Page Styles */
+/* About Page — Framer-Inspired */
 
 /* Hero */
 .about-hero {
-  padding: 12rem var(--space-lg) 4rem;
+  padding: calc(var(--header-height) + var(--space-3xl)) var(--space-lg) var(--space-2xl);
   text-align: center;
   position: relative;
   overflow: hidden;
+  min-height: 45vh;
+  display: flex;
+  align-items: center;
 }
 
 .about-hero-bg {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(201, 169, 98, 0.1), transparent);
+  background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(201, 169, 98, 0.08), transparent);
   z-index: 0;
 }
 
@@ -24,16 +27,18 @@
   font-size: clamp(2.5rem, 5vw, 4rem);
   max-width: 800px;
   margin: var(--space-md) auto var(--space-lg);
+  letter-spacing: -0.05em;
 }
 
 .about-hero-subtitle {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   color: var(--color-light-gray);
-  max-width: 650px;
+  max-width: 620px;
   margin: 0 auto;
+  line-height: 1.7;
 }
 
-/* Story Section */
+/* Story Section — split layout */
 .story-section {
   background: var(--color-charcoal);
 }
@@ -46,13 +51,16 @@
 }
 
 .story-content h2 {
-  font-size: 2.5rem;
+  font-size: 2.25rem;
   margin: var(--space-sm) 0 var(--space-lg);
+  letter-spacing: -0.04em;
 }
 
 .story-content p {
   margin-bottom: var(--space-md);
-  font-size: var(--text-md);
+  font-size: 0.9375rem;
+  color: var(--color-light-gray);
+  line-height: 1.7;
 }
 
 .story-image {
@@ -60,9 +68,8 @@
 }
 
 .image-frame {
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-xl);
   overflow: hidden;
-  box-shadow: var(--shadow-xl);
 }
 
 .image-frame img {
@@ -73,7 +80,7 @@
 
 .story-stats {
   display: flex;
-  gap: var(--space-lg);
+  gap: var(--space-md);
   margin-top: var(--space-lg);
 }
 
@@ -81,100 +88,116 @@
   display: flex;
   flex-direction: column;
   padding: var(--space-lg);
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--color-card);
   border-radius: var(--radius-md);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--color-card-border);
+  flex: 1;
 }
 
 .stat-number {
-  font-size: 2.5rem;
-  font-weight: 700;
+  font-size: 2.25rem;
+  font-weight: 800;
   color: var(--color-accent);
+  letter-spacing: -0.03em;
 }
 
 .stat-label {
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   color: var(--color-gray);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
 }
 
-/* Mission Section */
+/* Mission — full-width quote */
 .mission-section {
   background: var(--color-black);
-  padding: var(--space-4xl) 0;
 }
 
 .mission-card {
   text-align: center;
   padding: var(--space-3xl);
-  background: linear-gradient(135deg, rgba(201, 169, 98, 0.08), rgba(201, 169, 98, 0.02));
-  border: 1px solid rgba(201, 169, 98, 0.25);
+  background: var(--color-card);
+  border: 1px solid rgba(201, 169, 98, 0.15);
   border-radius: var(--radius-xl);
 }
 
 .mission-card h2 {
-  font-family: var(--font-display);
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  font-weight: 400;
+  font-size: clamp(1.375rem, 2.5vw, 1.875rem);
+  font-weight: 500;
   font-style: italic;
   line-height: 1.5;
   margin: var(--space-lg) 0;
+  letter-spacing: -0.02em;
+  color: var(--color-silver);
 }
 
 .mission-card p {
-  font-size: 1.125rem;
-  max-width: 500px;
+  font-size: 1rem;
+  max-width: 480px;
   margin: 0 auto;
 }
 
-/* Values Section */
+/* Values — 2x2 grid */
 .values-section {
   background: var(--color-charcoal);
 }
 
 .values-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: var(--space-lg);
 }
 
 .value-card {
   padding: var(--space-xl);
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--color-card);
+  border: 1px solid var(--color-card-border);
   border-radius: var(--radius-lg);
   transition: all var(--transition-medium);
+  will-change: transform;
 }
 
 .value-card:hover {
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--color-card-hover);
+  border-color: var(--color-card-border-hover);
   transform: translateY(-4px);
 }
 
 .value-icon {
-  width: var(--icon-lg);
-  height: var(--icon-lg);
-  background: linear-gradient(135deg, rgba(201, 169, 98, 0.2), rgba(201, 169, 98, 0.05));
+  width: 52px;
+  height: 52px;
+  background: rgba(201, 169, 98, 0.08);
+  border: 1px solid rgba(201, 169, 98, 0.12);
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--color-accent);
   margin-bottom: var(--space-lg);
+  position: relative;
+}
+
+.value-icon::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  background: radial-gradient(circle, rgba(201, 169, 98, 0.06), transparent 70%);
+  border-radius: 50%;
 }
 
 .value-card h3 {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   margin-bottom: var(--space-sm);
+  letter-spacing: -0.02em;
 }
 
 .value-card p {
-  font-size: var(--text-sm);
+  font-size: 0.875rem;
   color: var(--color-gray);
+  line-height: 1.6;
 }
 
-/* Approach Section */
+/* Approach — split layout */
 .approach-section {
   background: var(--color-black);
 }
@@ -187,13 +210,15 @@
 }
 
 .approach-text h2 {
-  font-size: 2.5rem;
+  font-size: 2.25rem;
   margin: var(--space-sm) 0 var(--space-lg);
+  letter-spacing: -0.04em;
 }
 
 .approach-text > p {
-  font-size: var(--text-md);
+  font-size: 0.9375rem;
   margin-bottom: var(--space-xl);
+  line-height: 1.7;
 }
 
 .approach-list {
@@ -207,16 +232,17 @@
   align-items: center;
   gap: var(--space-sm);
   color: var(--color-silver);
+  font-size: 0.9375rem;
 }
 
 .approach-list li .icon {
   color: var(--color-accent);
+  flex-shrink: 0;
 }
 
 .approach-image {
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-xl);
   overflow: hidden;
-  box-shadow: var(--shadow-xl);
 }
 
 .approach-image img {
@@ -225,78 +251,27 @@
   display: block;
 }
 
-/* Timeline Section */
-.timeline-section {
-  background: var(--color-charcoal);
-}
-
-.timeline {
-  display: flex;
-  gap: var(--space-lg);
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-.timeline-item {
-  flex: 1;
-  padding: var(--space-xl);
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: var(--radius-lg);
-  position: relative;
-}
-
-.timeline-item::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  right: -var(--space-lg);
-  width: var(--space-lg);
-  height: 2px;
-  background: var(--color-accent);
-  opacity: 0.3;
-}
-
-.timeline-item:last-child::before {
-  display: none;
-}
-
-.timeline-year {
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--color-accent);
-  margin-bottom: var(--space-sm);
-}
-
-.timeline-content h3 {
-  font-size: 1.125rem;
-  margin-bottom: var(--space-xs);
-}
-
-.timeline-content p {
-  font-size: var(--text-sm);
-  color: var(--color-gray);
-}
-
-/* CTA Section */
+/* CTA */
 .about-page .cta-section {
-  background: var(--color-black);
+  background: var(--color-charcoal);
 }
 
 .about-page .cta-card {
   text-align: center;
   padding: var(--space-3xl);
-  background: var(--color-charcoal);
+  background: var(--color-card);
+  border: 1px solid var(--color-card-border);
   border-radius: var(--radius-xl);
 }
 
 .about-page .cta-card h2 {
-  font-size: 2.5rem;
+  font-size: 2.25rem;
   margin-bottom: var(--space-md);
+  letter-spacing: -0.04em;
 }
 
 .about-page .cta-card p {
-  font-size: 1.125rem;
+  font-size: 1rem;
   color: var(--color-light-gray);
   margin-bottom: var(--space-xl);
 }
@@ -308,23 +283,12 @@
     grid-template-columns: 1fr;
     gap: var(--space-2xl);
   }
-
-  .values-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .timeline {
-    flex-direction: column;
-  }
-
-  .timeline-item::before {
-    display: none;
-  }
 }
 
 @media (max-width: 768px) {
   .about-hero {
-    padding: 10rem var(--space-lg) 4rem;
+    padding: calc(var(--header-height) + var(--space-2xl)) var(--space-lg) var(--space-xl);
+    min-height: auto;
   }
 
   .values-grid {
@@ -339,4 +303,3 @@
     padding: var(--space-xl);
   }
 }
-
