@@ -14,12 +14,12 @@ const clientProjects = [
     industry: 'Food & Beverage',
     isClient: true,
     description: 'A warm, inviting website for a kosher-friendly artisan bakery. Features large photography of fresh breads and pastries, online menu, location information, and catering inquiry forms.',
-    longDescription: 'Our first client project! We created a digital presence that captures the warmth and tradition of this beloved Toronto bakery. The design uses earthy tones and warm beige/brown color palette to evoke the feeling of freshly baked goods. Large hero images showcase their artisan breads and pastries.',
+    longDescription: 'Our first full-scope consulting engagement. We are building a comprehensive digital presence for this beloved Toronto bakery, including website design, professional photography, and operational systems integration.',
     image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1200&q=80',
     thumbnail: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=600&q=80',
     color: '#8B7355',
     features: ['Responsive Design', 'Online Menu', 'Location Map', 'Catering Forms', 'Photo Gallery'],
-    tools: ['React', 'Custom CMS', 'Cloudinary']
+    tools: ['React', 'Vite', 'Railway']
   },
   {
     id: 2,
@@ -28,12 +28,12 @@ const clientProjects = [
     industry: 'Food & Beverage',
     isClient: true,
     description: 'An elegant online presence for a premium French pâtisserie. Features sophisticated serif typography, soft pastel colors, and premium dessert photography.',
-    longDescription: 'Our second client trusted us to match their premium brand positioning. We designed an elegant experience with refined typography, delicate pastel color schemes, and carefully curated photography that showcases their exquisite pastries.',
+    longDescription: 'Our client trusted us to build their complete digital storefront. We designed and built a custom React application with a dynamic product catalog, professional photography of every product, automated image optimization pipeline, and a contact form powered by Resend API. The site is deployed on Railway with usage-based hosting.',
     image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=1200&q=80',
     thumbnail: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600&q=80',
     color: '#D4A5A5',
-    features: ['Elegant Design', 'Product Showcase', 'Online Ordering', 'Gift Cards', 'Newsletter'],
-    tools: ['Next.js', 'Shopify', 'Stripe']
+    features: ['Dynamic Product Catalog', 'CSV Content Management', 'Contact Form', 'Allergen System', 'Image Optimization', 'Mobile-First Design'],
+    tools: ['React 19', 'Vite 7', 'Express', 'Railway', 'Resend API']
   }
 ]
 

@@ -6,31 +6,31 @@ import './Pricing.css'
 
 const websiteBuildTiers = [
   {
-    name: 'Small Build',
-    price: '$500',
-    description: 'Best for simple websites with a few pages and basic content.',
-    idealFor: 'Great for businesses that just need to get online cleanly and clearly.',
+    name: 'Basic Website',
+    price: '$500 – $1,000',
+    description: 'Simple 1–5 page business website with mobile responsive design.',
+    idealFor: 'Great for businesses that just need a clean online presence. Includes photography and deployment.',
     popular: false
   },
   {
-    name: 'Standard Build',
-    price: '$1,000',
-    description: 'Ideal for most small businesses.',
-    idealFor: 'More pages, more content, better structure, and room to grow.',
+    name: 'Standard Website',
+    price: '$1,000 – $2,500',
+    description: 'Business website with 5–15 pages, forms, CMS, and SEO setup.',
+    idealFor: 'Ideal for most small businesses that need more structure and features. Includes photography and deployment.',
     popular: true
   },
   {
-    name: 'Extended Build',
-    price: '$1,500',
-    description: 'For larger sites with more sections, custom layouts, and added functionality.',
-    idealFor: 'Perfect when you need more than the basics.',
+    name: 'Full Digital Storefront',
+    price: '$4,000 – $4,500',
+    description: 'Complete e-commerce platform with product catalog, payment processing, and delivery integrations.',
+    idealFor: 'For businesses that want to sell online with professional photography, Uber Eats integration, and everything included.',
     popular: false
   },
   {
-    name: 'Large System',
-    price: '$2,000',
-    description: 'For advanced builds such as ordering systems, dashboards, integrations, or content-heavy platforms.',
-    idealFor: 'Pricing is confirmed once scope is clear.',
+    name: 'Custom Application',
+    price: '$5,000+',
+    description: 'Custom software, internal tools, CRM systems, or complex integrations.',
+    idealFor: 'Quoted per project once scope is clear.',
     popular: false,
     isCustom: true
   }
@@ -38,28 +38,28 @@ const websiteBuildTiers = [
 
 const maintenancePlans = [
   {
-    name: 'Basic Maintenance',
-    price: '$75',
-    tagline: 'Light support when you need it',
-    description: 'Best for businesses that want light support.',
+    name: 'Basic Support',
+    price: '$50+',
+    tagline: 'Usage-based minimum',
+    description: 'Base management fee covering monitoring, uptime, SSL, and minor updates.',
     features: [
-      'Small text and image updates',
-      'Basic content changes',
-      'Minor fixes',
+      'Uptime monitoring',
+      'SSL management',
+      'Minor text and image updates',
       'Email support'
     ],
     popular: false
   },
   {
-    name: 'Advanced Maintenance',
-    price: '$175',
-    tagline: 'Priority help for active sites',
-    description: 'For businesses that update often or want priority help.',
+    name: 'Active Support',
+    price: '$100+',
+    tagline: 'For active, growing sites',
+    description: 'Higher management fee for sites that need frequent updates, performance checks, and priority help.',
     features: [
+      'Everything in Basic',
       'Frequent content updates',
       'Layout adjustments',
-      'New sections or pages (within reason)',
-      'Performance checks',
+      'Performance optimization',
       'Priority support'
     ],
     popular: true
@@ -82,7 +82,7 @@ function Hero() {
         <span className="section-label">Pricing</span>
         <h1>Website Pricing</h1>
         <p className="pricing-hero-subtitle">
-          I keep website pricing simple and based on the actual size and scope of what's built — not inflated packages or hourly guessing.
+          Simple, transparent pricing based on scope — not inflated packages. Every project includes professional photography and deployment.
         </p>
       </animated.div>
     </section>
@@ -167,7 +167,7 @@ function OperatingFees() {
             <span className="section-label">⚡ Important</span>
             <h2>Operating & Platform Fees</h2>
             <p className="operating-intro">
-              In addition to the build cost, there is a monthly operating fee that covers services required to keep your website running.
+              Monthly fees are calculated using a transparent cost-plus formula tied to your actual Railway infrastructure usage. Bigger site, more traffic = slightly higher cost. You see exactly what you pay for.
             </p>
           </div>
           
@@ -198,7 +198,7 @@ function OperatingFees() {
 
             <div className="operating-cost-box">
               <span className="cost-label">Typical operating cost:</span>
-              <span className="cost-amount">$15–$40 per month</span>
+              <span className="cost-amount">$5–$40 per month</span>
               <span className="cost-note">(depending on the site)</span>
             </div>
 
@@ -299,6 +299,107 @@ function MaintenancePlans() {
   )
 }
 
+function ValueComparison() {
+  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
+  
+  const spring = useSpring({
+    opacity: inView ? 1 : 0,
+    transform: inView ? 'translateY(0px)' : 'translateY(30px)',
+    config: { mass: 1, tension: 80, friction: 26 }
+  })
+
+  const comparisons = [
+    { item: 'Custom website', market: '$5,000–$10,000', ours: 'Included' },
+    { item: 'Product photography', market: '$1,500–$3,000', ours: 'Included' },
+    { item: 'E-commerce system', market: '$2,000–$5,000', ours: 'Included' },
+    { item: 'Delivery integration', market: '$1,000–$3,000', ours: 'Included' },
+    { item: 'Deployment & infrastructure', market: '$500–$1,000', ours: 'Included' }
+  ]
+
+  const rowStyle = {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: '0.75rem 0',
+    borderBottom: '1px solid rgba(255,255,255,0.08)'
+  }
+
+  const headerRowStyle = {
+    ...rowStyle,
+    borderBottom: '2px solid rgba(255,255,255,0.15)',
+    paddingBottom: '0.5rem',
+    marginBottom: '0.25rem',
+    fontSize: '0.85rem',
+    opacity: 0.6,
+    textTransform: 'uppercase',
+    letterSpacing: '0.05em'
+  }
+
+  const totalRowStyle = {
+    ...rowStyle,
+    borderBottom: 'none',
+    borderTop: '2px solid rgba(255,255,255,0.15)',
+    marginTop: '0.5rem',
+    paddingTop: '1rem',
+    fontWeight: 600,
+    opacity: 0.7
+  }
+
+  const highlightRowStyle = {
+    ...rowStyle,
+    borderBottom: 'none',
+    paddingTop: '0.75rem',
+    fontWeight: 700,
+    fontSize: '1.15rem'
+  }
+
+  const itemStyle = { flex: '1 1 40%' }
+  const marketStyle = { flex: '1 1 30%', textAlign: 'center', textDecoration: 'line-through', opacity: 0.5 }
+  const oursStyle = { flex: '1 1 30%', textAlign: 'right', color: '#4ade80', fontWeight: 600 }
+
+  return (
+    <section className="section" ref={ref}>
+      <div className="container">
+        <animated.div style={spring}>
+          <div className="section-header">
+            <span className="section-label">💰 Value Comparison</span>
+            <h2>What You Get vs. Market Rates</h2>
+            <p className="section-subtitle">
+              See how our full-scope project pricing compares to hiring separately for each service.
+            </p>
+          </div>
+          <div className="fair-pricing-card">
+            <div className="fair-pricing-content">
+              <div style={headerRowStyle}>
+                <span style={itemStyle}>Service</span>
+                <span style={{ ...marketStyle, textDecoration: 'none', opacity: 1 }}>Market Rate</span>
+                <span style={{ ...oursStyle, color: 'inherit', opacity: 1 }}>Kim Consultant</span>
+              </div>
+              {comparisons.map((item, index) => (
+                <div key={index} style={rowStyle}>
+                  <span style={itemStyle}>{item.item}</span>
+                  <span style={marketStyle}>{item.market}</span>
+                  <span style={oursStyle}>{item.ours}</span>
+                </div>
+              ))}
+              <div style={totalRowStyle}>
+                <span style={itemStyle}>Market Total</span>
+                <span style={{ ...marketStyle, fontWeight: 600 }}>$10,000–$22,000</span>
+                <span style={oursStyle}></span>
+              </div>
+              <div style={highlightRowStyle}>
+                <span style={itemStyle}>Kim Consultant</span>
+                <span style={marketStyle}></span>
+                <span style={{ ...oursStyle, fontSize: '1.25rem' }}>$4,000–$4,500</span>
+              </div>
+            </div>
+          </div>
+        </animated.div>
+      </div>
+    </section>
+  )
+}
+
 function FairPricing() {
   const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
   
@@ -363,20 +464,28 @@ function FAQ() {
 
   const faqs = [
     {
+      question: 'What\'s included in every project?',
+      answer: 'Every website project includes professional photography of your products and business, full deployment to cloud infrastructure, mobile-responsive design, and ongoing usage-based hosting. You don\'t pay extra for photos or deployment — it\'s all part of the package.'
+    },
+    {
+      question: 'How does usage-based pricing work?',
+      answer: 'Your monthly fee is tied to your actual Railway infrastructure costs with a transparent markup plus a base management fee. A simple brochure site might cost $70/month total, while a full e-commerce platform might be $200/month. You see exactly what you\'re paying for.'
+    },
+    {
       question: 'What are the operating fees for?',
-      answer: 'The operating fees cover essential services like hosting, domain registration, and platform infrastructure that keep your website running smoothly. These costs go directly to service providers, not to me.'
+      answer: 'The operating fees cover essential services like hosting, domain registration, and platform infrastructure that keep your website running smoothly. These are based on your actual Railway infrastructure usage with a transparent cost-plus formula.'
     },
     {
       question: 'Do I need a maintenance plan?',
-      answer: 'Maintenance is optional. If you\'re comfortable making your own updates or don\'t need frequent changes, you can skip it. But if you want help keeping things fresh without the hassle, a maintenance plan gives you peace of mind.'
+      answer: 'Maintenance is optional. If you\'re comfortable making your own updates or don\'t need frequent changes, you can skip it. But if you want help keeping things fresh without the hassle, a support plan gives you peace of mind.'
     },
     {
       question: 'What if my project is bigger than the tiers shown?',
-      answer: 'For larger projects like ordering systems, dashboards, or complex integrations, we\'ll discuss your needs and I\'ll provide a custom quote once the scope is clear. The Large System tier starts at $2,000.'
+      answer: 'For larger projects like custom applications, CRM systems, or complex integrations, we\'ll discuss your needs and provide a custom quote once the scope is clear. Custom Application projects start at $5,000.'
     },
     {
       question: 'Are there any long-term contracts?',
-      answer: 'No. There are no long-term contracts or commitments. You pay for the build, and then you can choose whether to add maintenance support on a month-to-month basis.'
+      answer: 'No. There are no long-term contracts or commitments. You pay for the build, and then you can choose whether to add support on a month-to-month basis.'
     }
   ]
 
@@ -409,6 +518,7 @@ function Pricing() {
       <WebsiteBuildTiers />
       <OperatingFees />
       <MaintenancePlans />
+      <ValueComparison />
       <FairPricing />
       <FAQ />
     </div>

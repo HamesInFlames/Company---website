@@ -28,18 +28,20 @@ const contactInfo = [
 const projectTypes = [
   'New Website',
   'Website Redesign',
-  'eCommerce or Ordering System',
-  'Custom Software or Internal Tools',
-  'Operational Setup & Consulting',
+  'E-Commerce & Online Ordering',
+  'Custom Application or Internal Tools',
+  'Social Media Management',
+  'Lead Generation',
+  'Operational Consulting',
   'Maintenance & Support',
   'Not Sure Yet'
 ]
 
 const budgetRanges = [
-  '$500 - $1,000',
-  '$1,000 - $1,500',
-  '$1,500 - $2,000',
-  '$2,000+',
+  '$500 – $1,000',
+  '$1,000 – $2,500',
+  '$2,500 – $4,500',
+  '$4,500+',
   'Not sure yet'
 ]
 

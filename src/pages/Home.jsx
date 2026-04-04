@@ -58,9 +58,9 @@ const demoProjects = [
 ]
 
 const services = [
-  { icon: 'globe', title: 'Websites & Business Systems', description: 'Clean, functional websites built for clarity and everyday use.' },
-  { icon: 'code', title: 'Custom Software & Tools', description: 'Internal tools and systems built for your specific workflows.' },
-  { icon: 'clipboard', title: 'Operational Setup & Consulting', description: 'Practical help cleaning up how your business runs day-to-day.' }
+  { icon: 'globe', title: 'Websites & E-Commerce', description: 'Custom websites with product photography, online ordering, and delivery platform integrations — all included.' },
+  { icon: 'code', title: 'Custom Applications & Tools', description: 'Internal tools, CRM systems, loyalty apps, and custom software built for your specific workflows.' },
+  { icon: 'clipboard', title: 'Social Media & Growth', description: 'Social media management, influencer partnerships, and lead generation to grow your customer base.' }
 ]
 
 const processSteps = [
@@ -118,8 +118,7 @@ function Hero() {
           </h1>
         </animated.div>
         <animated.p className="hero-subtitle" style={subtitleSpring}>
-          We build practical websites and tools that make your business easier to run — 
-          less chaos, more clarity, fewer things falling through the cracks.
+          We build practical websites, applications, and digital systems that make your business easier to run — with professional photography included in every project.
         </animated.p>
         <animated.div className="hero-cta" style={ctaSpring}>
           <Link to="/contact" className="btn btn-primary btn-large">
@@ -332,7 +331,7 @@ function PricingPreview() {
             </p>
             <div className="pricing-preview-tiers">
               <div className="tier-preview">
-                <span className="tier-name">Small</span>
+                <span className="tier-name">Basic</span>
                 <span className="tier-price">$500</span>
               </div>
               <div className="tier-preview">
@@ -340,12 +339,12 @@ function PricingPreview() {
                 <span className="tier-price">$1,000</span>
               </div>
               <div className="tier-preview">
-                <span className="tier-name">Extended</span>
-                <span className="tier-price">$1,500</span>
+                <span className="tier-name">Custom</span>
+                <span className="tier-price">$2,500</span>
               </div>
               <div className="tier-preview">
-                <span className="tier-name">Large</span>
-                <span className="tier-price">$2,000</span>
+                <span className="tier-name">Full Digital</span>
+                <span className="tier-price">$4,000</span>
               </div>
             </div>
             <Link to="/pricing" className="btn btn-primary btn-large">

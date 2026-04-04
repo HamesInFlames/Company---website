@@ -7,8 +7,8 @@ import './About.css'
 const values = [
   {
     icon: 'target',
-    title: 'Practical First',
-    description: "We focus on what actually helps your business run better — not flashy extras you won't use."
+    title: 'Operations-First Thinking',
+    description: "We understand how businesses run before building technology to improve them — not the other way around."
   },
   {
     icon: 'users',
@@ -17,13 +17,13 @@ const values = [
   },
   {
     icon: 'shield',
-    title: 'Honest Pricing',
-    description: 'Clear costs upfront. No surprises, no hidden fees, no inflated packages.'
+    title: 'Transparent Pricing',
+    description: 'Usage-based monthly fees tied to real infrastructure costs. No hidden fees, no inflated packages.'
   },
   {
     icon: 'clipboard',
-    title: 'Systems Mindset',
-    description: 'We think about how tools connect and how work flows — not just individual pieces.'
+    title: 'All-Inclusive Delivery',
+    description: 'Photography, integrations, deployment, and support are standard in every project — never surprise extras.'
   }
 ]
 
@@ -43,8 +43,7 @@ function Hero() {
         <span className="section-label">About Kim Consultant</span>
         <h1>Systems-Focused Help for Local Businesses</h1>
         <p className="about-hero-subtitle">
-          We're a small Toronto-based consultancy helping local businesses build websites 
-          and systems that reduce chaos and make day-to-day operations simpler.
+          We're a small Toronto-based consultancy helping local businesses build websites, applications, and digital systems that reduce chaos and make day-to-day operations simpler. Every project includes professional photography.
         </p>
       </animated.div>
     </section>
@@ -80,15 +79,17 @@ function Story() {
               that holds it all together. That's exhausting.
             </p>
             <p>
-              We launched to help with the practical stuff — building websites that 
-              work, setting up systems that connect, and cleaning up the messy workflows 
-              that slow businesses down. Our first clients, Grodzinski Bakery and 
-              Lumière Pâtisserie, trusted us to help, and we delivered.
+              We launched to help with the practical stuff — building websites, custom 
+              applications, and digital systems that work, managing social media presence, 
+              and including professional photography in every project. Our clients — 
+              Grodzinski Bakery (full-scope engagement), Lumière Pâtisserie (live website), 
+              and Tova (active projects) — trusted us to help, and we're delivering.
             </p>
             <p>
-              We're new and small, which means you get direct communication and 
-              honest pricing — not layers of account managers or inflated agency fees. 
-              We're here to help local businesses run smoother, not to sell big promises.
+              We're a team of 2, growing as the business scales. That means you get 
+              direct communication and transparent, usage-based pricing — not layers of 
+              account managers or inflated agency fees. We're here to help local businesses 
+              run smoother, not to sell big promises.
             </p>
           </animated.div>
           <animated.div style={rightSpring} className="story-image">
